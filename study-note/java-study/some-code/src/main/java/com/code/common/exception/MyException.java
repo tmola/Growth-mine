@@ -1,5 +1,7 @@
 package com.code.common.exception;
 
+import com.code.common.util.result.Result;
+
 /**
  * <p>
  *
@@ -7,5 +9,24 @@ package com.code.common.exception;
  * @version 1.0
  * @date 2019/11/11
  */
-public class myException {
+public class MyException extends Exception{
+
+    Integer code;
+
+    public  MyException(){
+        super();
+    }
+    public  MyException(String detailMsg){
+        super(detailMsg);
+    }
+
+    public  MyException(Result.EType type){
+        super(type.getValue());
+        this.code = type.getKey();
+    }
+
+    public Integer getCode() {
+        return code;
+    }
+
 }

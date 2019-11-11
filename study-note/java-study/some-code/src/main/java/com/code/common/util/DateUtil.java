@@ -1,4 +1,4 @@
-package com.hacking.util;
+package com.code.common.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
+ * 日期工具类
  * <p>
  *
  * @author jintingying

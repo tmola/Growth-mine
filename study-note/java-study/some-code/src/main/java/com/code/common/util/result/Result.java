@@ -2,6 +2,8 @@ package com.code.common.util.result;
 
 
 import com.code.common.AppConst;
+import com.code.common.exception.MyException;
+import com.code.common.exception.MyRuntimeException;
 import lombok.Data;
 
 import java.util.Date;
@@ -14,44 +16,57 @@ import java.util.Date;
  * @date 2019/11/8
  */
 @Data
-public class ResultInfo {
+public class Result {
     private int code;
     private String message;
     private Object data;
     private String time = AppConst.sdf_y_s.format(new Date(System.currentTimeMillis()));
 
-    public static ResultInfo success(){
-        ResultInfo resultInfo = new ResultInfo();
-        resultInfo.code = SType.success.key;
-        resultInfo.message = SType.success.value;
-        return resultInfo;
+    public static Result success(){
+        Result result = new Result();
+        result.code = SType.success.key;
+        result.message = SType.success.value;
+        return result;
     }
-    public static ResultInfo success(SType type, Object data){
-        ResultInfo resultInfo = new ResultInfo();
-        resultInfo.code = type.key;
-        resultInfo.message = type.value;
-        resultInfo.data = data;
-        return resultInfo;
+    public static Result success(SType type, Object data){
+        Result result = new Result();
+        result.code = type.key;
+        result.message = type.value;
+        result.data = data;
+        return result;
     }
-    public static ResultInfo error(EType type, Object data){
-        ResultInfo resultInfo = new ResultInfo();
-        resultInfo.code = type.key;
-        resultInfo.message = type.value;
-        resultInfo.data = data;
-        return resultInfo;
+    public static Result error(EType type, Object data){
+        Result result = new Result();
+        result.code = type.key;
+        result.message = type.value;
+        result.data = data;
+        return result;
     }
 
-    public static ResultInfo serviceError(){
-        ResultInfo resultInfo = new ResultInfo();
-        resultInfo.code = EType.remoteServiceError.key;
-        resultInfo.message = EType.remoteServiceError.value;
-        return resultInfo;
+    public static Result serviceError(){
+        Result result = new Result();
+        result.code = EType.remoteServiceError.key;
+        result.message = EType.remoteServiceError.value;
+        return result;
     }
-    public static ResultInfo serviceError(String error){
-        ResultInfo resultInfo = new ResultInfo();
-        resultInfo.code = EType.remoteServiceError.key;
-        resultInfo.message = error;
-        return resultInfo;
+    public static Result serviceError(String error){
+        Result result = new Result();
+        result.code = EType.remoteServiceError.key;
+        result.message = error;
+        return result;
+    }
+
+    public static Result serviceException(int code, String error){
+        Result result = new Result();
+        result.code = code;
+        result.message = error;
+        return result;
+    }
+    public static Result serviceException(Result.EType type){
+        Result result = new Result();
+        result.code = type.getKey();
+        result.message = type.getValue();
+        return result;
     }
 
     public enum SType {

@@ -1,4 +1,4 @@
-package com.hacking.config;
+package com.code.configure;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -32,11 +32,10 @@ public class SwaggerConfig implements WebMvcConfigurer {
                 .apiInfo(apiInfo())
                 .select()
                 //此包路径下的类，才生成接口文档
-                .apis(RequestHandlerSelectors.basePackage("com.hacking.framework"))
+                .apis(RequestHandlerSelectors.basePackage("com.code.modules"))
                 .paths(PathSelectors.any())
                 .build();
     }
-
 
     /**
      * 自定义拦截器后，Spring Boot自动配置本身不会自动把/swagger-ui.html这个路径映射到对应的目录META-INF/resources/下面

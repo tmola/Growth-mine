@@ -1,4 +1,4 @@
-package com.hacking.util.result;
+package com.code.common.util.result;
 
 import lombok.Data;
 import org.springframework.data.domain.Pageable;

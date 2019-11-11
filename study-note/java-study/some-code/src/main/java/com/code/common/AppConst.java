@@ -1,4 +1,4 @@
-package com.hacking.constant;
+package com.code.common;
 
 import java.text.SimpleDateFormat;
 
