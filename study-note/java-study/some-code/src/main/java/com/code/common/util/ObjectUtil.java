@@ -2,6 +2,9 @@ package com.code.common.util;
 
 import org.apache.poi.ss.formula.functions.T;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -41,6 +44,17 @@ public class ObjectUtil {
     }
 
 
+    public static Field[] getAllField(Object o){
+        Class<?> clazz = o.getClass();
+        List<Field> fieldList = new ArrayList<>();
+        while(clazz != null){
+            fieldList.addAll(new ArrayList<>(Arrays.asList(clazz.getDeclaredFields())));
+            clazz = clazz.getSuperclass();
+        }
+        Field[] fields = new Field[fieldList.size()];
+        fieldList.toArray(fields);
+        return fields;
+    }
 
 
 }
