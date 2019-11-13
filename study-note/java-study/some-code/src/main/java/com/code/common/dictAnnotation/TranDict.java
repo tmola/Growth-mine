@@ -14,6 +14,6 @@ import java.lang.annotation.Target;
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Dict {
-    String dictCode();
+public @interface TranDict {
+    String dict(); //对应的catalog值
 }
