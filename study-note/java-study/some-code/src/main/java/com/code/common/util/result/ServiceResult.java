@@ -1,6 +1,7 @@
 package com.code.common.util.result;
 
 import lombok.Data;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.data.domain.Pageable;
 
 import java.util.HashMap;
@@ -16,22 +17,30 @@ import java.util.Map;
  */
 @Data
 public class ServiceResult {
-    public enum Type{
+    public enum Type {
         INSERT(0, "新增"),
         UPDATE(1, "修改"),
         SAVE(2, "保存"),
         DELETE(3, "删除"),
         SELECT(4, "查询"),
-        SELECT_PAGE(5, "分页查询"),;
+        SELECT_PAGE(5, "分页查询"),
+        ILLEGAL(6, "非法操作，请求数据无效");
         private int key;
         private String value;
-        Type(int key, String value){
+
+        Type(int key, String value) {
             this.key = key;
             this.value = value;
         }
     }
 
-    public static Map  result(Type type,int total, int successed, int fieled){
+    public static Map resultError() {
+        Map<String, Object> result = new HashMap();
+        result.put("type", Type.ILLEGAL.value);
+        return result;
+    }
+
+    public static Map result(Type type, int total, int successed, int fieled) {
         Map<String, Object> result = new HashMap();
         result.put("type", type.value);
         result.put("total", total);
@@ -39,14 +48,26 @@ public class ServiceResult {
         result.put("fieled", fieled);
         return result;
     }
-    public static <T> Map result(List<T> list){
+
+    public static <T> Map result(Type type, int total, int successed, int fieled, List<T> fieldList) {
+        Map<String, Object> result = new HashMap();
+        result.put("type", type.value);
+        result.put("total", total);
+        result.put("successed", successed);
+        result.put("fieled", fieled);
+        result.put("fieledList", fieldList);
+        return result;
+    }
+
+    public static <T> Map result(List<T> list) {
         Map<String, Object> result = new HashMap();
         result.put("type", Type.SELECT.value);
         result.put("list", list);
         result.put("totalSize", list.size());
         return result;
     }
-    public static <T> Map result(List<T> list, Pageable pageable){
+
+    public static <T> Map result(List<T> list, Pageable pageable) {
         Map<String, Object> result = new HashMap();
         result.put("type", Type.SELECT_PAGE.value);
         result.put("list", list);

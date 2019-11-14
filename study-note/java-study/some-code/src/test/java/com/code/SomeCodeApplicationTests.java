@@ -1,5 +1,6 @@
 package com.code;
 
+import com.code.common.fileUpload.UploadFileConfigure;
 import com.code.common.util.excel.ExcelUtil;
 import com.code.modules.demo.entity.model.TestExcelModel;
 import org.junit.jupiter.api.Test;

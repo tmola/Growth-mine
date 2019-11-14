@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 @Data
 @Component
 @ConfigurationProperties(prefix = "project.upload")
-public class FileUploadProperties {
+public class UploadFileProperties {
     private String filePath;
 
     private String staticPath = "/upload/**";

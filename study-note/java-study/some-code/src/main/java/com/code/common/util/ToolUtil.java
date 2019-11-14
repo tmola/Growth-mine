@@ -100,6 +100,9 @@ public class ToolUtil {
         return rootPath.replaceAll("\\\\","/");
     }
 
+
+
+
     /**
      * 获取文件后缀名
      */

@@ -3,10 +3,7 @@ package com.code.common.util;
 import org.apache.poi.ss.formula.functions.T;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * <p>
@@ -43,11 +40,14 @@ public class ObjectUtil {
         return !isNotEmpty(object);
     }
 
+    public static String randomID(){
+        return UUID.randomUUID().toString().replace("-", "");
+    }
 
-    public static Field[] getAllField(Object o){
+    public static Field[] getAllField(Object o) {
         Class<?> clazz = o.getClass();
         List<Field> fieldList = new ArrayList<>();
-        while(clazz != null){
+        while (clazz != null) {
             fieldList.addAll(new ArrayList<>(Arrays.asList(clazz.getDeclaredFields())));
             clazz = clazz.getSuperclass();
         }

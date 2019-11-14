@@ -59,33 +59,36 @@ public class DictAspect {
         return result;
     }
 
-    private void parseDictText(Object result) {
+    private void parseDictText(Object result) throws Exception {
         if (result != null) {
             if (result instanceof Result) {
                 List<JSONObject> items = new ArrayList<>();
                 Object ob = ((Result) result).getData();
+                if (ob != null) {
 //                if (result instanceof List) {
-                for (Object record : (List) ob) {
-                    ObjectMapper mapper = new ObjectMapper();
-                    String json = "{}";
-                    try {
-                        json = mapper.writeValueAsString(record);
-                    } catch (JsonProcessingException e) {
-                        log.error("Json解析失败：" + e.getMessage(), e);
-                    }
-                    JSONObject item = JSON.parseObject(json);
-                    for (Field field : ObjectUtil.getAllField(record)) {
-                        if (field.getAnnotation(TranDict.class) != null) {
-                            String dict = field.getAnnotation(TranDict.class).dict();
-                            String code = String.valueOf(item.get(field.getName()));
-                            //转换字典代码
-                            String dictText = dictService.getTextByCode(dict, code);
-                            item.put(field.getName() + DICT_TEXT_SUFFIX, dictText);
+                    for (Object record : (List) ob) {
+                        ObjectMapper mapper = new ObjectMapper();
+                        String json = "{}";
+                        try {
+                            json = mapper.writeValueAsString(record);
+                        } catch (JsonProcessingException e) {
+                            log.error("Json解析失败：" + e.getMessage(), e);
                         }
-                    }
-                    items.add(item);
+                        JSONObject item = JSON.parseObject(json);
+                        for (Field field : ObjectUtil.getAllField(record)) {
+                            if (field.getAnnotation(TranDict.class) != null) {
+                                String dict = field.getAnnotation(TranDict.class).dict();
+                                String code = String.valueOf(item.get(field.getName()));
+                                //转换字典代码
+                                String dictText = dictService.getTextByCode(dict, code);
+                                item.put(field.getName() + DICT_TEXT_SUFFIX, dictText);
+                            }
+                        }
+                        items.add(item);
 //                    }
-                    ((Result) result).setData(items);
+                        ((Result) result).setData(items);
+                    }
+
                 }
             }
         }

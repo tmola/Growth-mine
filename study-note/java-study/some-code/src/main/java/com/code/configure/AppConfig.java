@@ -17,11 +17,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class AppConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new MyInterceptor())
-                .addPathPatterns("/**") /*添加拦截路径*/
-                .excludePathPatterns("/test/**")/*排除拦截路径*/
-                .excludePathPatterns("/testDict/**")/*排除拦截路径*/
-                .excludePathPatterns("/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**");/*排除Swagger*/
+//        registry.addInterceptor(new MyInterceptor())
+//                .addPathPatterns("/**") /*添加拦截路径*/
+//                .excludePathPatterns("/test/**")/*排除拦截路径*/
+//                .excludePathPatterns("/testDict/**")/*排除拦截路径*/
+//                .excludePathPatterns("/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**");/*排除Swagger*/
 
         registry.addInterceptor(new MyAsyncInterceptor())
                 .addPathPatterns("/test/asyncRun");

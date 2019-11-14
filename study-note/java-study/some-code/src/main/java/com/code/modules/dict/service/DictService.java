@@ -1,8 +1,9 @@
 package com.code.modules.dict.service;
 
-import com.code.common.util.result.ServiceResult;
 import com.code.modules.dict.entity.Dict;
+import com.code.modules.dict.entity.vo.SearchVo;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -14,7 +15,13 @@ import java.util.Map;
  */
 public interface DictService {
 
-    Map deleteById(String id);
+    Map deleteByIds(List<String> ids) throws Exception;
 
-    String getTextByCode(String catalog, String code);
+    Map save(List<Dict> dictList) throws Exception;
+
+    Map get(SearchVo searchVo) throws Exception;
+
+    String getTextByCode(String catalog, String code) throws Exception;
+
+    List<Dict> getTextList(String catalog) throws Exception;
 }
