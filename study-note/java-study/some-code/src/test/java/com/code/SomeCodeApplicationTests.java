@@ -29,35 +29,19 @@ class SomeCodeApplicationTests {
     }
 
     @Test
-    void testWriteExcel2() {
-        List<TestExcelModel> list = new ArrayList<>();
-        for (int i = 1; i <= 24; i++) {
-            TestExcelModel testExcelModel = new TestExcelModel();
-            testExcelModel.setNum(i);
-            testExcelModel.setEmail("1xxxxxxx" + i);
-            list.add(testExcelModel);
-        }
-
-        int pageSize = 10;
-        try {
-            for (int page = 0; page * pageSize < list.size(); page++) {
-                int begin = page * pageSize;
-                int end =  list.size()-page*pageSize > pageSize ? page * pageSize + pageSize : list.size();
-                List<TestExcelModel> subList = list.subList(begin, end);
-                ExcelUtil.write("ts2.xlsx", "ts", page, TestExcelModel.class, subList);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @Test
     void testReadExcel() {
         List<TestExcelModel> list = ExcelUtil.read("ts.xlsx", 0, 2, TestExcelModel.class);
 
         for (TestExcelModel t : list) {
             System.out.println(t);
         }
+    }
+
+    @Test
+    void testFile()
+    {
+        String file =  ExcelUtil.createExcelFile();
+        System.out.println(file);
+        System.out.println(ExcelUtil.deleteFile(file));
     }
 }

@@ -1,12 +1,10 @@
 package com.code.modules.dict.entity.model;
 
 import com.code.common.dictAnnotation.TranDict;
+import com.code.modules.dict.entity.Dict;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * <p>
@@ -33,4 +31,7 @@ public class TestDict {
 
     @Column(name = "ino")
     private String ino;
+
+//    @ManyToMany()
+//    private Dict dict;
 }

@@ -3,6 +3,7 @@ package com.code.common.util;
 import org.apache.poi.ss.formula.functions.T;
 
 import java.lang.reflect.Field;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -40,8 +41,16 @@ public class ObjectUtil {
         return !isNotEmpty(object);
     }
 
-    public static String randomID(){
+    public static String randomID() {
         return UUID.randomUUID().toString().replace("-", "");
+    }
+
+    public static String randomID_35() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-");
+        String id = UUID.randomUUID().toString();
+        String date = sdf.format(new Date());
+        return date +id.substring(9, 13) + id.substring(14, 18)
+                + id.substring(19, 23) + id.substring(24);
     }
 
     public static Field[] getAllField(Object o) {
