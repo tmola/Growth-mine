@@ -1,6 +1,5 @@
 package com.code.modules.dict.entity.vo;
 
-import com.code.modules.dict.entity.Dict;
 import lombok.Data;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;

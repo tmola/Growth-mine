@@ -1,7 +1,6 @@
 package com.code.modules.dict.entity.model;
 
 import com.code.common.dictAnnotation.TranDict;
-import com.code.modules.dict.entity.Dict;
 import lombok.Data;
 
 import javax.persistence.*;

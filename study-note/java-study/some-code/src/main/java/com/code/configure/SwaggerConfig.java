@@ -32,7 +32,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
                 .apiInfo(apiInfo())
                 .select()
                 //此包路径下的类，才生成接口文档
-                .apis(RequestHandlerSelectors.basePackage("com.code.modules"))
+                .apis(RequestHandlerSelectors.basePackage("com.code"))
                 .paths(PathSelectors.any())
                 .build();
     }

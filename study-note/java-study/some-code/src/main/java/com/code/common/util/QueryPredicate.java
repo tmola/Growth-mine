@@ -1,11 +1,6 @@
 package com.code.common.util;
 
-import com.code.modules.dict.entity.Dict;
 import com.code.modules.dict.entity.vo.SearchVo;
-import org.apache.poi.ss.formula.functions.T;
-import org.hibernate.query.criteria.internal.CriteriaBuilderImpl;
-import org.hibernate.query.criteria.internal.CriteriaQueryImpl;
-import org.hibernate.query.criteria.internal.QueryStructure;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.CriteriaBuilder;

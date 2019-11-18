@@ -24,8 +24,9 @@ public class MyInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        String userSession = (String) request.getSession().getAttribute(USER_KEY);
-        return userSession != null ? true : false;
+//        String userSession = (String) request.getSession().getAttribute(USER_KEY);
+//        return userSession != null ? true : false;
+        return true;
         // 返回true才能继续执行
     }
 

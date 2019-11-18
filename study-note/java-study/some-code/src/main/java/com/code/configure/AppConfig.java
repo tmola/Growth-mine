@@ -23,7 +23,7 @@ public class AppConfig implements WebMvcConfigurer {
 //                .excludePathPatterns("/testDict/**")/*排除拦截路径*/
 //                .excludePathPatterns("/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**");/*排除Swagger*/
 
-        registry.addInterceptor(new MyAsyncInterceptor())
-                .addPathPatterns("/test/asyncRun");
+//        registry.addInterceptor(new MyAsyncInterceptor())
+//                .addPathPatterns("/test/asyncRun");
     }
 }

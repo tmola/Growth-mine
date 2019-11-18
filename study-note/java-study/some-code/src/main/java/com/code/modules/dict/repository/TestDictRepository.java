@@ -1,6 +1,5 @@
 package com.code.modules.dict.repository;
 
-import com.code.modules.dict.entity.Dict;
 import com.code.modules.dict.entity.model.TestDict;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;

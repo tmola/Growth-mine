@@ -4,8 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.code.common.util.ObjectUtil;
 import com.code.common.util.result.Result;
-import com.code.modules.dict.entity.Dict;
-import com.code.modules.dict.service.DictService;
+import com.code.modules.system.services.SysDictService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -36,7 +35,7 @@ public class DictAspect {
     final static String DICT_TEXT_SUFFIX = "_dictText";
 
     @Autowired
-    private DictService dictService;
+    private SysDictService dictService;
 
     @Pointcut("@annotation(DictResult)")
     public void doDictResultPoint() {

@@ -1,35 +1,36 @@
-package com.code.modules.dict.service.impl;
+package com.code.modules.system.services.impl;
+
 
 import com.code.common.util.ObjectUtil;
 import com.code.common.util.QueryPredicate;
 import com.code.common.util.result.ServiceResult;
-import com.code.modules.dict.entity.Dict;
 import com.code.modules.dict.entity.vo.SearchVo;
-import com.code.modules.dict.repository.DictRepository;
-import com.code.modules.dict.service.DictService;
+import com.code.modules.system.entity.SysDict;
+import com.code.modules.system.repository.SysDictRepository;
+import com.code.modules.system.services.SysDictService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 /**
- * <p>
+ * 字典表Service接口实现
  *
- * @author jintingying
- * @version 1.0
- * @date 2019/11/13
+ * @author ${author}
+ * @version $v: ${version}, $time:${datetime} Exp $
  */
 @Service
-public class DictServiceImpl implements DictService {
+public class SysDictServiceImpl implements SysDictService, Serializable {
 
     @Autowired
-    private DictRepository dictRepository;
+    private SysDictRepository dictRepository;
 
     @Override
     public Map deleteByIds(List<String> ids) {
@@ -38,7 +39,7 @@ public class DictServiceImpl implements DictService {
             return ServiceResult.resultError();
 
         for (String id : ids) {
-            Dict dict = dictRepository.delelteById(id);
+            SysDict dict = dictRepository.delelteById(id);
             if (dict != null) {
                 successCount++;
             }
@@ -51,12 +52,12 @@ public class DictServiceImpl implements DictService {
     @Transactional
     @Modifying
     @Override
-    public Map save(List<Dict> dictList) {
+    public Map save(List<SysDict> dictList) {
         if (dictList == null)
             return ServiceResult.resultError();
         int successCount = 0;
-        List<Dict> fieldList = new ArrayList<>();
-        for (Dict dict : dictList) {
+        List<SysDict> fieldList = new ArrayList<>();
+        for (SysDict dict : dictList) {
             if (ObjectUtil.isNotEmpty(dict.getId())) {
                 dict.setModifyUser(null);
                 dict.setModifyTime(new Date());
@@ -66,7 +67,7 @@ public class DictServiceImpl implements DictService {
                 dict.setCreateUser(null);
                 dict.setCreateTime(new Date());
             }
-            Dict dictRet = dictRepository.saveAndFlush(dict);
+            SysDict dictRet = dictRepository.saveAndFlush(dict);
             if (dictRet != null) successCount++;
             else fieldList.add(dict);
         }
@@ -77,7 +78,7 @@ public class DictServiceImpl implements DictService {
     public Map get(SearchVo searchVo) {
         QueryPredicate queryPredicate = new QueryPredicate();
         queryPredicate.setIgnoredFieldsDefault();
-        Page<Dict> page = dictRepository.findAll(QueryPredicate.of(searchVo, queryPredicate), searchVo.page());
+        Page<SysDict> page = dictRepository.findAll(QueryPredicate.of(searchVo, queryPredicate), searchVo.page());
         return ServiceResult.result(page.getContent());
     }
 
@@ -87,7 +88,7 @@ public class DictServiceImpl implements DictService {
     }
 
     @Override
-    public List<Dict> getTextList(String catalog) {
+    public List<SysDict> getTextList(String catalog) {
         return dictRepository.getTextList(catalog);
     }
 }
