@@ -57,7 +57,18 @@ public class OptResult {
     public static Map selectResult(Page page) {
         Map<String, Object> result = new HashMap();
         result.put("type", Type.SELECT_PAGE.value);
-        result.put("page", page);
+        result.put("list", page.getContent());
+        result.put("totalPages", page.getTotalPages());
+        result.put("totalElements", page.getTotalElements());
+        result.put("number", page.getNumber());
+        result.put("pageable", page.getPageable());
+        return result;
+    }
+
+    public static <T> Map selectResult(T t) {
+        Map<String, Object> result = new HashMap();
+        result.put("type", Type.SELECT_PAGE.value);
+        result.put("data", t);
         return result;
     }
 

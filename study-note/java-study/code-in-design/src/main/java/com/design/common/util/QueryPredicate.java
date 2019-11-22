@@ -1,6 +1,6 @@
 package com.design.common.util;
 
-import com.design.common.vo.QueryTermsVO;
+import com.design.common.vo.CommonQuery;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -23,7 +23,7 @@ import java.util.List;
  * @version 1.0
  * @date 2019/11/14
  */
-public class QueryPredicate<T> {
+public class QueryPredicate {
 
     private String[] ignoredFieldsDefault = {"createTime", "createUser", "modifyTime", "modifyTser", "delFlag"};
 
@@ -49,7 +49,10 @@ public class QueryPredicate<T> {
         return Arrays.asList(ignoredFields);
     }
 
-    public static <T> Specification<T> of(QueryTermsVO searchVo, QueryPredicate queryPredicate) {
+    //存在的问题：对于存放字典代码的字段无法成功匹配
+    // 再查询前将条件中的码表数据转换？？
+    public static <T> Specification<T> ofAllLikeMatch(CommonQuery searchVo, QueryPredicate queryPredicate) {
+        queryPredicate.setIgnoredFieldsDefault();
         List<String> ignoredFields = queryPredicate.getIgnoredFields();
         Specification<T> specification = new Specification<T>() {
             @Override
@@ -61,17 +64,14 @@ public class QueryPredicate<T> {
                     for (final PropertyDescriptor pd : beanInfo.getPropertyDescriptors()) {
                         final Object value = pd.getReadMethod().invoke(prod, (Object[]) null);
                         if (!(value instanceof Class) && !ignoredFields.contains(pd.getName())) {
-                            switch (searchVo.getType()) {
-                                case 1:
-                                    if (searchVo.getTerms() != null && !searchVo.getTerms().equals("")) {
-                                        preList.add(cb.like(root.get(pd.getName()).as(String.class), (String)searchVo.getTerms()));
-                                    }
-                                    break;
-                                case 2:
-                                    if (value != null && !value.equals("")) {
-                                        preList.add(cb.like(root.get(pd.getName()).as(String.class), String.valueOf(value)));
-                                    }
-                                    break;
+                            if(searchVo.isObject()){
+                                if (value != null && !value.equals("")) {
+                                    preList.add(cb.like(root.get(pd.getName()).as(String.class), String.valueOf(value)));
+                                }
+                            }else{
+                                if (searchVo.getSerchWord() != null && !searchVo.getSerchWord().equals("")) {
+                                    preList.add(cb.like(root.get(pd.getName()).as(String.class), (String)searchVo.getSerchWord()));
+                                }
                             }
                         }
                     }
@@ -84,7 +84,7 @@ public class QueryPredicate<T> {
                     e.printStackTrace();
                 }
                 Predicate[] pres = new Predicate[preList.size()];
-                if (searchVo.getType() == 1 && preList.size() > 0)
+                if (!searchVo.isObject() && preList.size() > 0)
                     return query.where(cb.or(preList.toArray(pres))).getRestriction();
                 return query.where(preList.toArray(pres)).getRestriction();
             }

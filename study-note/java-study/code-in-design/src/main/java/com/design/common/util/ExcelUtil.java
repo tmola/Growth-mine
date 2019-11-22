@@ -1,28 +1,14 @@
-package com.code.common.util.excel;
+package com.design.common.util;
 
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.write.metadata.WriteSheet;
-import com.code.common.util.DateUtil;
-import com.code.common.util.HttpUtil;
-import com.code.common.util.ObjectUtil;
-import com.code.common.util.ToolUtil;
-import com.code.common.util.result.Result;
-import com.code.modules.dict.entity.model.TestDict;
-import org.apache.poi.ss.formula.functions.T;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.util.unit.DataUnit;
+import com.design.common.listener.ExcelListener;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.xml.crypto.Data;
 import java.io.*;
 import java.net.URLEncoder;
-import java.util.Base64;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -160,7 +146,7 @@ public class ExcelUtil {
         if (list == null || list.size() == 0)
             return;
         String file = ExcelUtil.createExcelFile();
-        ExcelUtil.write(file, sheetName, list.get(0).getClass(), list, lineMax);
+        ExcelUtil.write(file, sheetName, list.get(0).getClass(), list, 1);
         ExcelUtil.downloadFile(file, filename);
     }
 

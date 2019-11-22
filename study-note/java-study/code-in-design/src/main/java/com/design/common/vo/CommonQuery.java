@@ -14,11 +14,15 @@ import org.springframework.data.domain.Pageable;
  * @date 2019/11/17 3:46
  */
 @Data
-public class QueryTermsVO<T> {
-    Integer type;
+public class CommonQuery<T> {
+
+    boolean isPageable;
     Integer page;
     Integer pageSize;
+
+    boolean isObject;
     T terms;
+    String serchWord;
 
     public Pageable ofPage(){
         return PageRequest.of(page, pageSize);

@@ -1,7 +1,7 @@
 package com.design.module.system.services.impl;
 
 
-import com.code.modules.system.services.SysAuthorityService;
+import com.design.module.system.services.SysAuthorityService;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;

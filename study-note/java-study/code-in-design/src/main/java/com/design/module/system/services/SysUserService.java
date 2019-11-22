@@ -1,7 +1,12 @@
 package com.design.module.system.services;
 
 
-import com.code.modules.system.entity.SysUser;
+
+import com.design.common.vo.CommonQuery;
+import com.design.module.system.entity.SysUser;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * 用户表Service接口
@@ -10,9 +15,11 @@ import com.code.modules.system.entity.SysUser;
  * @version $v: ${version}, $time:${datetime} Exp $
  */
 public interface SysUserService {
-    SysUser save(SysUser user);
 
-    SysUser findUserById(String id);
+    Map save(List<SysUser> users) throws Exception ;
 
-    SysUser findByUsername(String name);
+    Map delete(List<String> ids) throws Exception ;
+
+    Map select(CommonQuery<SysUser> conditions) throws Exception ;
+
 }

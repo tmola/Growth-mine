@@ -4,14 +4,13 @@ package com.design.module.system.services.impl;
 import com.design.common.util.ObjectUtil;
 import com.design.common.util.QueryPredicate;
 import com.design.common.util.result.OptResult;
-import com.design.common.vo.QueryTermsVO;
+import com.design.common.vo.CommonQuery;
 import com.design.module.system.entity.SysDict;
 import com.design.module.system.repository.SysDictRepository;
 import com.design.module.system.services.SysDictService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -75,11 +74,17 @@ public class SysDictServiceImpl implements SysDictService, Serializable {
     }
 
     @Override
-    public Map get(QueryTermsVO searchVo) {
+    public Map get(CommonQuery condition) {
         QueryPredicate queryPredicate = new QueryPredicate();
         queryPredicate.setIgnoredFieldsDefault();
-        Page<SysDict> page = dictRepository.findAll(QueryPredicate.of(searchVo, queryPredicate), searchVo.ofPage());
-        return OptResult.selectResult(page);
+        if(condition.isPageable()){
+            Page<SysDict> page = dictRepository.findAll(QueryPredicate.ofAllLikeMatch(condition, queryPredicate), condition.ofPage());
+            return OptResult.selectResult(page);
+        }
+        else{
+            List<SysDict> list = dictRepository.findAll(QueryPredicate.ofAllLikeMatch(condition, queryPredicate));
+            return OptResult.selectResult(list);
+        }
     }
 
     @Override

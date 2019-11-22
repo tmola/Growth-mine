@@ -3,6 +3,7 @@ package com.design.common.annotation.dictAnnotation;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.design.common.util.ObjectUtil;
+import com.design.common.util.ToolUtil;
 import com.design.common.util.result.ApiResult;
 import com.design.module.system.services.SysDictService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -13,9 +14,14 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
+import java.beans.BeanInfo;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +38,7 @@ import java.util.Map;
 @Component
 public class DictAspect {
 
-    final static String DICT_TEXT_SUFFIX = "_dictText";
+    final static String DICT_TEXT_SUFFIX = "DictText";
 
     @Autowired
     private SysDictService dictService;
@@ -61,44 +67,55 @@ public class DictAspect {
 
     private void parseDictText(Object result) throws Exception {
         if (result != null) {
-            if (result instanceof ApiResult) {
-                List<JSONObject> items = new ArrayList<>();
-                Object ob = ((ApiResult) result).getData();
-                if (ob != null) {
-                    if (ob instanceof Map) {
-                        Object listOb = ((Map<String, Object>) ob).get("list");
-                        if (listOb != null) {
-                            for (Object record : (List) listOb) {
-                                ObjectMapper mapper = new ObjectMapper();
-                                String json = "{}";
-                                try {
-                                    json = mapper.writeValueAsString(record);
-                                } catch (JsonProcessingException e) {
-                                    log.error("Json解析失败：" + e.getMessage(), e);
-                                }
-                                JSONObject item = JSON.parseObject(json);
-                                for (Field field : ObjectUtil.getAllField(record)) {
-                                    if (field.getAnnotation(TranDict.class) != null) {
-                                        String dict = field.getAnnotation(TranDict.class).dict();
-                                        String code = String.valueOf(item.get(field.getName()));
-                                        //转换字典代码
-                                        String dictText = dictService.getTextByCode(dict, code);
-                                        item.put(field.getName() + DICT_TEXT_SUFFIX, dictText);
-                                    }
-                                }
-                                items.add(item);
-                            }
-                            ((ApiResult) result).setData(items);
-                        }
-                    }
 
-                }
-            }
+            List<JSONObject> items = new ArrayList<>();
+            Object retData = result;
+            if (retData != null) {
+                if (retData instanceof Map) {
+                    Object listData = ((Map<String, Object>) retData).get("list");
+                    if (listData != null && ((List) listData).size() > 0) {
+                        List records = (List) listData;
+                        Class clazz = records.get(0).getClass();
+                        Field[] fields = clazz.getDeclaredFields();
+                        Method[] methods = clazz.getDeclaredMethods();
+                        for (Object record : (List) listData) {
+                            for (Field field : ObjectUtil.getAllField(record)) {
+                                if (field.getAnnotation(TranDict.class) != null) {
+                                    Method method = clazz.getMethod("get"+ ToolUtil.upperFirst(field.getName()));
+                                    String dict = field.getAnnotation(TranDict.class).dict();
+                                    String code = String.valueOf(method.invoke(record));//转换字典代码
+                                    String dictText = dictService.getTextByCode(dict, code);
+                                    Method methodDict = clazz.getDeclaredMethod("set" + ToolUtil.upperFirst(field.getName()) + DICT_TEXT_SUFFIX, new Class[]{String.class});
+                                    methodDict.invoke(record, dictText);
+                                }
+                            }
+
+//                            ObjectMapper mapper = new ObjectMapper();
+//                            String json = "{}";
+//                            try {
+//                                json = mapper.writeValueAsString(record);
+//                            } catch (JsonProcessingException e) {
+//                                log.error("Json解析失败：" + e.getMessage(), e);
+//                            }
+//                            JSONObject item = JSON.parseObject(json);
+//                            for (Field field : ObjectUtil.getAllField(record)) {
+//                                if (field.getAnnotation(TranDict.class) != null) {
+//
+//                                    String dict = field.getAnnotation(TranDict.class).dict();
+//                                    String code = String.valueOf(item.get(field.getName()));
+//                                    //转换字典代码
+//                                    String dictText = dictService.getTextByCode(dict, code);
+//                                    item.put(field.getName() + DICT_TEXT_SUFFIX, dictText);
+//                                }
+//                            }//for-field
+//                            ;
+//                            items.add(item);
+                        }//for-record
+//                        ((Map) result).put("list", items);
+                    }//if-listDta not null
+                }// if-Map or Page
+            }//if-retData not null
         }
     }
-
-//    private String translateDictValue(String code, String key) {
-//        return dictService.getTextByCode(code);
-//    }
 
 }

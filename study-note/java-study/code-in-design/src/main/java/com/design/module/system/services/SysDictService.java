@@ -1,6 +1,6 @@
 package com.design.module.system.services;
 
-import com.design.common.vo.QueryTermsVO;
+import com.design.common.vo.CommonQuery;
 import com.design.module.system.entity.SysDict;
 
 import java.util.List;
@@ -17,7 +17,7 @@ public interface SysDictService {
 
     Map save(List<SysDict> dictList) throws Exception;
 
-    Map get(QueryTermsVO searchVo) throws Exception;
+    Map get(CommonQuery searchVo) throws Exception;
 
     String getTextByCode(String catalog, String code) throws Exception;
 

@@ -63,5 +63,47 @@ public class ObjectUtil {
         return fields;
     }
 
+    public static <T> List<Object> list2Object(Object s, List<T> list) {
+        List<Object> newList = new ArrayList<>();
+        Class<?> clazz1 = s.getClass();
+        Field[] fields1 = clazz1.getDeclaredFields();
+        if (null != list && !list.isEmpty()) {
+            for (T data : list) {
+                Object object = null;
+                Class<?> clazz = data.getClass();
+                Field[] fields2 = clazz.getDeclaredFields();
+                try {
+                    object = clazz1.newInstance();
+                } catch (InstantiationException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+                for (int i = 0; i < fields1.length; i++) {
+                    Field field1 = fields1[i];
+                    for (int j = 0; j < fields2.length; j++) {
+                        Field field2 = fields2[j];
+                        String f1 = field1.getName();
+                        String f2 = field2.getName();
+                        if (f1.equals(f2)) {
+                            try {
+                                field1.setAccessible(true);
+                                field2.setAccessible(true);
+                                field1.set(object, field2.get(data));
+                            } catch (IllegalAccessException e) {
+                                e.printStackTrace();
+                            }
+                            break;
+                        }
+                    }
+                }
+                newList.add(object);
+            }
+        }
+        return newList;
+    }
+
+
+
 
 }
