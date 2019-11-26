@@ -22,4 +22,6 @@ public interface SysUserService {
 
     Map select(CommonQuery<SysUser> conditions) throws Exception ;
 
+    Map uploadExcelData(List<Object> datas) throws Exception ;
+
 }

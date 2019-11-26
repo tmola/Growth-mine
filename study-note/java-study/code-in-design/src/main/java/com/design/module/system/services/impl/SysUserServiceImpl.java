@@ -1,14 +1,20 @@
 package com.design.module.system.services.impl;
 
 
+import com.alibaba.fastjson.JSONArray;
 import com.design.common.annotation.dictAnnotation.DictResult;
+import com.design.common.exception.ProjectException;
+import com.design.common.exception.ReturnMessage;
 import com.design.common.util.ObjectUtil;
 import com.design.common.util.QueryPredicate;
 import com.design.common.util.result.OptResult;
 import com.design.common.vo.CommonQuery;
+import com.design.module.system.entity.SysDict;
 import com.design.module.system.entity.SysUser;
+import com.design.module.system.repository.SysDictRepository;
 import com.design.module.system.repository.SysUserRepository;
 import com.design.module.system.services.SysUserService;
+import org.hibernate.NonUniqueObjectException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -22,13 +28,16 @@ import java.util.*;
  * @author ${author}
  * @version $v: ${version}, $time:${datetime} Exp $
  */
-@Service
+@Service("UserService")
 public class SysUserServiceImpl implements SysUserService, Serializable {
     @Autowired
     private SysUserRepository userRepository;
 
+    @Autowired
+    private SysDictRepository dictRepository;
+
     @Override
-    public Map save(List<SysUser> users){
+    public Map save(List<SysUser> users) {
         if (ObjectUtil.isEmpty(users)) return OptResult.optError("保存的数据不能为空");
         Integer total = users.size();
         Integer success = 0;
@@ -42,7 +51,23 @@ public class SysUserServiceImpl implements SysUserService, Serializable {
             } else {
                 user.setModifyTime(new Date());
             }
-            SysUser savedUser = userRepository.saveAndFlush(user);
+            if (ObjectUtil.isEmpty(user.getPassword())) {
+                user.setPassword("123456");
+            }
+            if (ObjectUtil.isNotEmpty(user.getSexDictText())) {
+                String sex = dictRepository.getCode("sex", user.getSexDictText());
+                if (null != sex)
+                    user.setSex(sex);
+            }
+            SysUser savedUser = null;
+            try {
+                savedUser = userRepository.saveAndFlush(user);
+            }catch (Exception e){
+                e.printStackTrace();
+                field++;
+                fieldList.add(user);
+                continue;
+            }
             if (ObjectUtil.isNull(savedUser)) {
                 field++;
                 fieldList.add(user);
@@ -74,12 +99,20 @@ public class SysUserServiceImpl implements SysUserService, Serializable {
     public Map select(CommonQuery<SysUser> conditions) {
         QueryPredicate queryPredicate = new QueryPredicate();
         if (conditions.isPageable()) {
-            Page page = userRepository.findAll(QueryPredicate.ofAllLikeMatch(conditions, queryPredicate),conditions.ofPage());
+            Page page = userRepository.findAll(QueryPredicate.ofAllLikeMatch(conditions, queryPredicate), conditions.ofPage());
             return OptResult.selectResult(page);
-        }
-        else {
+        } else {
             List list = userRepository.findAll(QueryPredicate.ofAllLikeMatch(conditions, queryPredicate));
             return OptResult.selectResult(list);
         }
+    }
+
+    @Override
+    public Map uploadExcelData(List<Object> datas) throws Exception {
+        JSONArray jsonArray = new JSONArray(datas);
+        List<SysUser> users = new ArrayList<>();
+        for (int i = 0; i < jsonArray.size(); i++)
+            users.add(jsonArray.getJSONObject(i).toJavaObject(SysUser.class));
+        return save(users);
     }
 }

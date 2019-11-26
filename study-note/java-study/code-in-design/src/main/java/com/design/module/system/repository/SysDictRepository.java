@@ -25,8 +25,16 @@ public interface SysDictRepository extends JpaRepository<SysDict, String>,JpaSpe
     SysDict delelteById(String id);
 
     @Query("select t.text from SysDict t  where t.delFlag = 0 and t.catalog = ?1 and t.code = ?2")
-    String getTextByCode(String catalog, String code);
+    String getText(String catalog, String code);
 
-    @Query("select t.catalog, t.code, t.text from SysDict t  where t.delFlag = 0 and t.catalog = ?1")
-    List<SysDict> getTextList(String catalog);
+    @Query("select t.code from SysDict t  where t.delFlag = 0 and t.catalog = ?1 and t.text = ?2")
+    String getCode(String catalog, String text);
+
+    @Query("select t from SysDict t  where t.delFlag = 0 and t.catalog = ?1")
+    List<SysDict> getDictList(String catalog);
+
+    @Query("select t.text from SysDict t  where t.delFlag = 0 and t.catalog = ?1")
+    List<String> getTextList(String catalog);
+
+
 }

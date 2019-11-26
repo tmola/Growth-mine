@@ -1,6 +1,7 @@
 package com.design.common.util;
 
 import com.design.common.vo.CommonQuery;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -12,9 +13,7 @@ import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * <p>
@@ -24,6 +23,51 @@ import java.util.List;
  * @date 2019/11/14
  */
 public class QueryPredicate {
+    /* 查询规则 */
+    /**
+     * 精确查询(=)
+     */
+    public static final Long EQUAL = 0L;
+    /**
+     * 模糊查询(*XX*)
+     */
+    public static final Long LIKE = 1L;
+    /**
+     * 左模糊查询(*XX)
+     */
+    public static final Long LEFT_LIKE = 2L;
+    /**
+     * 右模糊查询(XX*)
+     */
+    public static final Long RIGHT_LIKE = 3L;
+    /**
+     * 不等于(!=)
+     */
+    public static final Long NOT_EQUAL = 4L;
+    /**
+     * 大于(>)
+     */
+    public static final Long GT = 5L;
+    /**
+     * 大于等于(>=)
+     */
+    public static final Long GE = 6L;
+    /**
+     * 小于(<)
+     */
+    public static final Long LT = 7L;
+    /**
+     * 小于等于(<=)
+     */
+    public static final Long LE = 8L;
+    /**
+     * 多值(in)
+     */
+    public static final Long IN = 9L;
+    /**
+     * 区间查询(between)
+     */
+    public static final Long BETWEEN = 10L;
 
     private String[] ignoredFieldsDefault = {"createTime", "createUser", "modifyTime", "modifyTser", "delFlag"};
 
@@ -31,11 +75,53 @@ public class QueryPredicate {
 
     private String[] ignoredFields;
 
-//    private Map<String, List<Object>> inValues;
-//
-//    private Map<String, Long[]> betweenValues;
-//
-//    private Map<String, Long> fieldRules;
+    private Map<String, List<Object>> inValues;
+
+    private Map<String, Long[]> betweenValues;
+
+    private Map<String, Long> fieldRules;
+
+    public QueryPredicate() {
+        inValues = new HashMap<>();
+        betweenValues = new HashMap<>();
+        fieldRules = new HashMap<>();
+    }
+
+    /**
+     * 添加多条相同的匹配规则
+     * @param regulation 查询规则
+     * @param fields  需要验证的字段名称
+     */
+    public QueryPredicate withMatcher(Long regulation, String... fields) {
+        List<String> fieldList = Arrays.asList(fields);
+        for (String field : fieldList) {
+            fieldRules.put(field, regulation);
+        }
+        return this;
+    }
+
+    /**
+     * 添加一条IN匹配规则
+     * @param field 需要验证的字段名称
+     * @param inValueList IN数据列表
+     */
+    public QueryPredicate withMatcherIn(String field, List<Object> inValueList) {
+        fieldRules.put(field, IN);
+        inValues.put(field, inValueList);
+        return this;
+    }
+
+    /**
+     * 添加一条BETWEEN匹配规则
+     * @param field 需要验证的字段名称
+     * @param x 第一个值
+     * @param y 第二个值
+     */
+    public QueryPredicate withMatcherBetween(String field, Long x, Long y){
+        fieldRules.put(field, BETWEEN);
+        betweenValues.put(field, new Long[]{x, y});
+        return this;
+    }
 
     public void setIgnoredFields(String... fields) {
         ignoredFields = fields;
@@ -64,13 +150,13 @@ public class QueryPredicate {
                     for (final PropertyDescriptor pd : beanInfo.getPropertyDescriptors()) {
                         final Object value = pd.getReadMethod().invoke(prod, (Object[]) null);
                         if (!(value instanceof Class) && !ignoredFields.contains(pd.getName())) {
-                            if(searchVo.isObject()){
+                            if (searchVo.isObject()) {
                                 if (value != null && !value.equals("")) {
                                     preList.add(cb.like(root.get(pd.getName()).as(String.class), String.valueOf(value)));
                                 }
-                            }else{
+                            } else {
                                 if (searchVo.getSerchWord() != null && !searchVo.getSerchWord().equals("")) {
-                                    preList.add(cb.like(root.get(pd.getName()).as(String.class), (String)searchVo.getSerchWord()));
+                                    preList.add(cb.like(root.get(pd.getName()).as(String.class), (String) searchVo.getSerchWord()));
                                 }
                             }
                         }

@@ -1,15 +1,31 @@
-package com.design.common.util;
+package com.design.common.excel;
 
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.write.metadata.WriteSheet;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.design.common.listener.ExcelListener;
+import com.design.common.util.HttpUtil;
+import com.design.common.util.ObjectUtil;
+import com.design.common.util.ToolUtil;
+import com.design.common.util.result.ApiResult;
+import com.design.module.system.entity.excel.UserExcel;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.URLEncoder;
 import java.util.List;
+import java.util.Map;
+
+import static com.alibaba.fastjson.JSON.toJSON;
 
 /**
  * <p>
@@ -24,6 +40,7 @@ public class ExcelUtil {
     //    @Value("${project.template.file-path}") //使用@value 的类中必须被@Service 或@Component注解
     private static String templatePath = "H:\\\\Growth-mine\\\\template";
     private static String uploadPath = "H:\\\\Growth-mine\\\\upload";
+    private static final String excelPaket = "com.design.module.system.entity.excel.";
 
     public static List read(String pathName, int sheet, int row, Class head) {
         return row == 0 ?
@@ -126,15 +143,18 @@ public class ExcelUtil {
             return null;
         String originalFilename = multipartFile.getOriginalFilename();
         String suffix = ToolUtil.getFileSuffix(originalFilename);
+
         String filePath = ToolUtil.appendFile(uploadPath, suffix.replace(".", ""));
         File file = new File(filePath);
         if (!file.exists())
-            file.mkdir();
+            file.mkdirs();
         String newFilename = ObjectUtil.randomID_35() + suffix;
         String fileURL = ToolUtil.appendFile(filePath, newFilename);
         File dest = new File(fileURL);
+        if (!dest.exists())
+            dest.createNewFile();
         multipartFile.transferTo(dest);
-        return fileURL;
+        return dest.getAbsolutePath();
     }
 
     /**
@@ -146,16 +166,46 @@ public class ExcelUtil {
         if (list == null || list.size() == 0)
             return;
         String file = ExcelUtil.createExcelFile();
-        ExcelUtil.write(file, sheetName, list.get(0).getClass(), list, 1);
-        ExcelUtil.downloadFile(file, filename);
+        write(file, sheetName, list.get(0).getClass(), list, lineMax);
+        downloadFile(file, filename);
     }
 
-//    /**
-//     * 从xlsx文档导入数据
-//     */
-//    public static void importDataFromExcelFile(MultipartFile file,
-//                                               HttpServletRequest request, HttpServletResponse response) throws IOException {
-//
-//    }
+    /**
+     * 导出xlsx数据模板
+     */
+    public static <T> void exportTemplateByExcelFile(String excelClassName, String sheetName, String filename) throws IOException, ClassNotFoundException, IllegalAccessException, InstantiationException {
+        Class clazz = Class.forName(excelPaket + excelClassName);
+        String file = ExcelUtil.createExcelFile();
+        EasyExcel.write(file, clazz)
+                .registerWriteHandler(new ExcelSheetHandler(clazz.newInstance()))
+                .sheet(sheetName)
+                .doWrite(null);
+        downloadFile(file, filename);
+    }
+
+    public static ApiResult importDataFromExcelFile(MultipartFile file, String excelClassName,String serviceName,
+                                                  int sheet, int row) throws IOException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        List<Object> datas = analyzingDataFromExcelFile(file, excelClassName, sheet, row);
+        Object service = ApplicationContextUtil.getSpringBean(serviceName);
+        Method method = service.getClass().getMethod("uploadExcelData", List.class);
+        return ApiResult.success(method.invoke(service, datas));
+    }
+
+    /**
+     * 从xlsx文档解析数据
+     */
+    private static List analyzingDataFromExcelFile(MultipartFile file, String excelClassName,
+                                                  int sheet, int row) throws IOException, ClassNotFoundException {
+        Class excelClass = Class.forName(excelPaket + excelClassName);
+        String filePath = ExcelUtil.uploadFile(file);
+        List<Object> list;
+        if (0 == row)
+            list = EasyExcel.read(filePath, excelClass, new ExcelListener()).sheet(sheet).doReadSync();
+        else
+            list = EasyExcel.read(filePath, excelClass, new ExcelListener()).sheet(sheet).headRowNumber(row).doReadSync();
+//        ExcelUtil.deleteFile(filePath);
+        return list;
+    }
+
 
 }

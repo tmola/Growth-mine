@@ -21,5 +21,7 @@ public interface SysDictService {
 
     String getTextByCode(String catalog, String code) throws Exception;
 
-    List<SysDict> getTextList(String catalog) throws Exception;
+    List<SysDict> getDictList(String catalog);
+
+    List<String> getTextList(String catalog);
 }

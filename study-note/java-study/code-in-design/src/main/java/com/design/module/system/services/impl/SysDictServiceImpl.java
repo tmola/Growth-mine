@@ -26,7 +26,7 @@ import java.util.Map;
  * @author ${author}
  * @version $v: ${version}, $time:${datetime} Exp $
  */
-@Service
+@Service("DictService")
 public class SysDictServiceImpl implements SysDictService, Serializable {
 
     @Autowired
@@ -89,11 +89,16 @@ public class SysDictServiceImpl implements SysDictService, Serializable {
 
     @Override
     public String getTextByCode(String catalog, String code) {
-        return dictRepository.getTextByCode(catalog, code);
+        return dictRepository.getText(catalog, code);
     }
 
     @Override
-    public List<SysDict> getTextList(String catalog) {
+    public List<SysDict> getDictList(String catalog) {
+        return dictRepository.getDictList(catalog);
+    }
+
+    @Override
+    public List<String> getTextList(String catalog) {
         return dictRepository.getTextList(catalog);
     }
 }
