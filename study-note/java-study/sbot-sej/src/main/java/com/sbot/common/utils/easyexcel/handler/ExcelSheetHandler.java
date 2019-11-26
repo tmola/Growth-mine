@@ -25,7 +25,7 @@ public class ExcelSheetHandler<T> implements SheetWriteHandler {
 
     private T obj;
 
-    private SysDictService dictService = (SysDictService) AppContextUtil.getBeanByName("dictService");
+    private SysDictService dictService = (SysDictService) AppContextUtil.getBeanByName("DictService");
 
 
     public ExcelSheetHandler(T obj) {
@@ -43,8 +43,9 @@ public class ExcelSheetHandler<T> implements SheetWriteHandler {
         if (obj instanceof UserExcel) {
             // 性别
             List<SysDict> sexList = dictService.getDictList("sex");
-            String[] sexArr = new String[sexList.size()];
+
             if (null != sexList && !sexList.isEmpty()) {
+                String[] sexArr = new String[sexList.size()];
                 int i=0;
                 for (SysDict dict:sexList) {
                     sexArr[i++] = dict.getText();

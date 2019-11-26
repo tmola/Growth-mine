@@ -24,16 +24,19 @@ public class OptRetMapUtil {
         result.put("total", total);
         result.put("successed", successed);
         result.put("fieled", fieled);
-        result.put("fieledList", fieldList);
+        if (fieldList != null && !fieldList.isEmpty())
+            result.put("fieledList", fieldList);
         return result;
     }
+
     public static <T> Map deleteOptResult(int total, int successed, int fieled, List<T> fieldList) {
         Map<String, Object> result = new HashMap();
         result.put("type", Type.DELETE.value);
         result.put("total", total);
         result.put("successed", successed);
         result.put("fieled", fieled);
-        result.put("fieledList", fieldList);
+        if (fieldList != null && !fieldList.isEmpty())
+            result.put("fieledList", fieldList);
         return result;
     }
 
@@ -54,6 +57,7 @@ public class OptRetMapUtil {
         result.put("pagesize", pageable.getPageSize());
         return result;
     }
+
     public static Map selectOptResult(Page page) {
         Map<String, Object> result = new HashMap();
         result.put("type", Type.SELECT_PAGE.value);
@@ -92,7 +96,7 @@ public class OptRetMapUtil {
         DELETE(3, "删除"),
         SELECT(4, "查询"),
         SELECT_PAGE(5, "分页查询"),
-        ERROR(6,"操作出错"),
+        ERROR(6, "操作出错"),
         ILLEGAL(6, "非法操作，请求数据无效");
         private int key;
         private String value;

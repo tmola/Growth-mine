@@ -20,7 +20,7 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name = "sys_user")
-public class SysUser extends BaseField {
+public class SysUser {
 
     /**
      * 主键id
@@ -98,6 +98,20 @@ public class SysUser extends BaseField {
 
     @Column(name = "DEL_FLAG")
     private int delFlag;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "create_time")
+    private Date createTime;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "modify_time")
+    private Date modifyTime;
+
+    @Column(name = "create_user")
+    private String createUser;
+
+    @Column(name = "modify_user")
+    private String modifyUser;
 
     /**
      * 实现Token的生成方法

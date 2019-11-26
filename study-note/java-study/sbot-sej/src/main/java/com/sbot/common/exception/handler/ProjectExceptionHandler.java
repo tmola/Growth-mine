@@ -1,4 +1,4 @@
-package com.sbot.common.handler;
+package com.sbot.common.exception.handler;
 
 import com.sbot.common.exception.ProjectException;
 import com.sbot.common.vo.ResultVO;
