@@ -18,7 +18,7 @@ public interface SysDictService {
 
     Map save(List<SysDict> dictList) throws Exception;
 
-    Map get(QueryVO searchVo) throws Exception;
+    Map select(QueryVO searchVo) throws Exception;
 
     String getTextByCode(String catalog, String code) throws Exception;
 

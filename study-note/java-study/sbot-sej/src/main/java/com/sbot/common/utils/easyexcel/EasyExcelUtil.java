@@ -8,9 +8,12 @@ import com.sbot.common.utils.easyexcel.handler.ExcelSheetHandler;
 import com.sbot.common.utils.easyexcel.listener.ExcelListener;
 import com.sbot.common.vo.QueryVO;
 import com.sbot.common.vo.ResultVO;
+import org.apache.poi.ss.formula.functions.T;
+import org.aspectj.weaver.ast.Test;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
@@ -72,13 +75,13 @@ public class EasyExcelUtil {
      * @param entityName “实体名”
      * @param query      查询条件
      */
-    public static <T> void exportDataByExcelFile(String filename,
-                                                 String sheetName,
-                                                 String entityName,
-                                                 QueryVO<T> query) throws Exception {
+    public static void exportDataByExcelFile(String filename,
+                                             String sheetName,
+                                             String entityName,
+                                             QueryVO query) throws Exception {
         Class excelClass = Class.forName(excelBasePaket + entityName + "Excel");
         Object excel = excelClass.newInstance();
-        List datas = getDataFromQuery(entityName + "Service", query);
+        List datas = getDataFromQuery(entityName, query);
         if (datas == null || datas.size() == 0)
             return;
         List list = ToolUtil.list2Object(excel, datas);
@@ -90,9 +93,11 @@ public class EasyExcelUtil {
     /**
      * 查询需要导出的数据
      */
-    private static <T> List getDataFromQuery(String serviceName, QueryVO<T> query) throws Exception {
+    private static List getDataFromQuery(String entityName, QueryVO query) throws Exception {
 
-        Object service = AppContextUtil.getBeanByName(serviceName);
+        Object service = AppContextUtil.getBeanByName(entityName + "Service");
+        Class entityClass = Class.forName("com.sbot.modules.system.entity." + entityName);
+        query.setTerms(ToolUtil.Json2Object(query.getTerms(), entityClass));
         Method method = service.getClass().getMethod("select", QueryVO.class);
         Object ret = method.invoke(service, query);
         return (List) ((Map) ret).get("list");
@@ -102,10 +107,10 @@ public class EasyExcelUtil {
     /**
      * 导入Excel文档数据
      *
-     * @param file  Excel文件
-     * @param entityName  “实体”名
-     * @param sheet 哪个sheet
-     * @param row   哪行开始
+     * @param file       Excel文件
+     * @param entityName “实体”名
+     * @param sheet      哪个sheet
+     * @param row        哪行开始
      */
     public static ResultVO importDataFromExcelFile(MultipartFile file, String entityName,
                                                    int sheet, int row) throws Exception {

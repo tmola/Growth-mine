@@ -118,45 +118,47 @@ public class QueryStrategy {
         return Arrays.asList(ignoredFields);
     }
 
+    public List<String> getDefaultIgnoredFields() {
+        return Arrays.asList(ignoredFieldsDefault);
+    }
+
     //存在的问题：对于存放字典代码的字段无法成功匹配
     // 再查询前将条件中的码表数据转换？？
     public static <T> Specification<T> ofAllLikeMatch(QueryVO searchVo, QueryStrategy strategy) {
-        strategy.setIgnoredFieldsDefault();
-        List<String> ignoredFields = strategy.getIgnoredFields();
-        Specification<T> specification = new Specification<T>() {
-            @Override
-            public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder cb){
-                List<Predicate> preList = new ArrayList<>();
-                try {
-                    Object prod = searchVo.getTerms();
-                    final BeanInfo beanInfo = Introspector.getBeanInfo(prod.getClass());
-                    for (final PropertyDescriptor pd : beanInfo.getPropertyDescriptors()) {
-                        final Object value = pd.getReadMethod().invoke(prod, (Object[]) null);
-                        if (!(value instanceof Class) && !ignoredFields.contains(pd.getName())) {
-                            if (searchVo.isObject()) {
-                                if (value != null && !value.equals("")) {
-                                    preList.add(cb.like(root.get(pd.getName()).as(String.class), String.valueOf(value)));
-                                }
-                            } else {
-                                if (searchVo.getSerchWord() != null && !searchVo.getSerchWord().equals("")) {
-                                    preList.add(cb.like(root.get(pd.getName()).as(String.class), searchVo.getSerchWord()));
-                                }
+        List<String> ignoredFields = new ArrayList<>();
+        ignoredFields.addAll(strategy.getIgnoredFields());
+        ignoredFields.addAll(strategy.getDefaultIgnoredFields());
+        Specification<T> specification = (Specification<T>) (root, query, cb) -> {
+            List<Predicate> preList = new ArrayList<>();
+            try {
+                Object prod = searchVo.getTerms();
+                final BeanInfo beanInfo = Introspector.getBeanInfo(prod.getClass());
+                for (final PropertyDescriptor pd : beanInfo.getPropertyDescriptors()) {
+                    final Object value = pd.getReadMethod().invoke(prod, (Object[]) null);
+                    if (!(value instanceof Class) && !ignoredFields.contains(pd.getName())) {
+                        if (searchVo.isObject()) {
+                            if (value != null && !value.equals("")) {
+                                preList.add(cb.like(root.get(pd.getName()).as(String.class), String.valueOf(value)));
+                            }
+                        } else {
+                            if (searchVo.getSearchWord() != null && !searchVo.getSearchWord().equals("")) {
+                                preList.add(cb.like(root.get(pd.getName()).as(String.class), searchVo.getSearchWord()));
                             }
                         }
                     }
-                    preList.add(cb.equal(root.get(DEL_FLAG).as(String.class), String.valueOf(0)));
-                } catch (IntrospectionException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                    e.printStackTrace();
                 }
-                Predicate[] pres = new Predicate[preList.size()];
-                if (!searchVo.isObject() && preList.size() > 0)
-                    return query.where(cb.or(preList.toArray(pres))).getRestriction();
-                return query.where(preList.toArray(pres)).getRestriction();
+                preList.add(cb.equal(root.get(DEL_FLAG).as(String.class), String.valueOf(0)));
+            } catch (IntrospectionException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
             }
+            Predicate[] pres = new Predicate[preList.size()];
+            if (!searchVo.isObject() && preList.size() > 0)
+                return query.where(cb.or(preList.toArray(pres))).getRestriction();
+            return query.where(preList.toArray(pres)).getRestriction();
         };
         return specification;
     }

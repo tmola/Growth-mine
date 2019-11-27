@@ -34,6 +34,6 @@ public class DictController {
 
     @PostMapping("select")
     public ResultVO select(@RequestBody QueryVO<SysDict> query) throws Exception{
-        return ResultVO.success(dictService.get(query));
+        return ResultVO.success(dictService.select(query));
     }
 }

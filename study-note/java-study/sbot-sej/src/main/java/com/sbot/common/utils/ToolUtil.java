@@ -1,6 +1,10 @@
 package com.sbot.common.utils;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.Environment;
@@ -8,6 +12,8 @@ import org.springframework.core.env.Environment;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -87,6 +93,7 @@ public class ToolUtil {
 
     /**
      * 获取对象所有字段（包括继承）
+     *
      * @param o
      * @return
      */
@@ -100,6 +107,12 @@ public class ToolUtil {
         Field[] fields = new Field[fieldList.size()];
         fieldList.toArray(fields);
         return fields;
+    }
+
+    public static Object Json2Object(Object obj, Class clazz) throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
+        if (null == obj) return null;
+        JSONObject jsonObject = (JSONObject) JSON.toJSON(obj);
+        return JSONObject.parseObject(String.valueOf(jsonObject), clazz);
     }
 
     public static <T> List<Object> list2Object(Object s, List<T> list) {
@@ -142,7 +155,26 @@ public class ToolUtil {
         return newList;
     }
 
-    public static void appRun(Class clazz, String[] args){
+    public static Object setFieldValueBySetMethod(Object object, String fieldName, Object value) throws NoSuchFieldException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+        Class clazz = object.getClass();
+        Field field = clazz.getDeclaredField(fieldName);
+        Method method = clazz.getDeclaredMethod("set" + ToolUtil.upperFirst(fieldName), field.getType());
+        field.setAccessible(true);
+        method.invoke(object, value);
+        field.setAccessible(false);
+        return object;
+    }
+
+    public static  Object setFieldValueByFieldName(Object object, String fieldName, Object value) throws NoSuchFieldException, IllegalAccessException {
+        Class clazz = object.getClass();
+        Field field = clazz.getDeclaredField(fieldName);
+        field.setAccessible(true);
+        field.set(object, value);
+        field.setAccessible(false);
+        return object;
+    }
+
+    public static void appRun(Class clazz, String[] args) {
         ConfigurableApplicationContext application = SpringApplication.run(clazz, args);
         Environment env = application.getEnvironment();
         String ip = "127.0.0.1";

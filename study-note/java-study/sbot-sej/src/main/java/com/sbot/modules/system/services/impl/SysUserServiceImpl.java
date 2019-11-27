@@ -4,6 +4,8 @@ package com.sbot.modules.system.services.impl;
 import com.alibaba.fastjson.JSONArray;
 
 import com.sbot.common.annotation.DictResult;
+import com.sbot.common.enums.ResultCode;
+import com.sbot.common.exception.ProjectException;
 import com.sbot.common.utils.OptRetMapUtil;
 import com.sbot.common.utils.QueryStrategy;
 import com.sbot.common.utils.ToolUtil;
@@ -14,6 +16,7 @@ import com.sbot.modules.system.repository.SysUserRepository;
 import com.sbot.modules.system.services.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
@@ -25,7 +28,7 @@ import java.util.*;
  * @author ${author}
  * @version $v: ${version}, $time:${datetime} Exp $
  */
-@Service("UserService")
+@Service("SysUserService")
 public class SysUserServiceImpl implements SysUserService, Serializable {
     @Autowired
     private SysUserRepository userRepository;
@@ -59,7 +62,7 @@ public class SysUserServiceImpl implements SysUserService, Serializable {
             SysUser savedUser = null;
             try {
                 savedUser = userRepository.saveAndFlush(user);
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
                 field++;
                 fieldList.add(user);
@@ -93,13 +96,23 @@ public class SysUserServiceImpl implements SysUserService, Serializable {
 
     @DictResult
     @Override
-    public Map select(QueryVO<SysUser> conditions) {
+    public Map select(QueryVO<SysUser> conditions) throws ProjectException {
         QueryStrategy queryStrategy = new QueryStrategy();
+        queryStrategy.setIgnoredFields("sexDictText");
+        List<Sort.Order> orders = new ArrayList<>();
+        orders.add(new Sort.Order(Sort.Direction.ASC, "createTime"));
         if (conditions.isPageable()) {
-            Page page = userRepository.findAll(QueryStrategy.ofAllLikeMatch(conditions, queryStrategy), conditions.ofPage());
+            if (conditions.getPage() < 0 || conditions.getPageSize() <= 0)
+                throw new ProjectException(ResultCode.exceptionError);
+            Page page = userRepository.findAll(QueryStrategy.ofAllLikeMatch(conditions, queryStrategy), conditions.ofPage(orders));
             return OptRetMapUtil.selectOptResult(page);
         } else {
-            List list = userRepository.findAll(QueryStrategy.ofAllLikeMatch(conditions, queryStrategy));
+            List list = null;
+            try {
+                list = userRepository.findAll(QueryStrategy.ofAllLikeMatch(conditions, queryStrategy), Sort.by(orders));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return OptRetMapUtil.selectOptResult(list);
         }
     }

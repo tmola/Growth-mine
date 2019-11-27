@@ -11,6 +11,7 @@ import com.sbot.modules.system.repository.SysDictRepository;
 import com.sbot.modules.system.services.SysDictService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +28,7 @@ import java.util.Map;
  * @author ${author}
  * @version $v: ${version}, $time:${datetime} Exp $
  */
-@Service("DictService")
+@Service("SysDictService")
 public class SysDictServiceImpl implements SysDictService, Serializable {
 
     @Autowired
@@ -75,15 +76,16 @@ public class SysDictServiceImpl implements SysDictService, Serializable {
     }
 
     @Override
-    public Map get(QueryVO condition) {
+    public Map select(QueryVO condition) {
         QueryStrategy queryStrategy = new QueryStrategy();
-        queryStrategy.setIgnoredFieldsDefault();
+        List<Sort.Order> orders = new ArrayList<>();
+        orders.add(new Sort.Order(Sort.Direction.ASC, "sort"));
         if(condition.isPageable()){
-            Page<SysDict> page = dictRepository.findAll(QueryStrategy.ofAllLikeMatch(condition, queryStrategy), condition.ofPage());
+            Page<SysDict> page = dictRepository.findAll(QueryStrategy.ofAllLikeMatch(condition, queryStrategy), condition.ofPage(orders));
             return OptRetMapUtil.selectOptResult(page);
         }
         else{
-            List<SysDict> list = dictRepository.findAll(QueryStrategy.ofAllLikeMatch(condition, queryStrategy));
+            List<SysDict> list = dictRepository.findAll(QueryStrategy.ofAllLikeMatch(condition, queryStrategy), Sort.by(orders));
             return OptRetMapUtil.selectOptResult(list);
         }
     }

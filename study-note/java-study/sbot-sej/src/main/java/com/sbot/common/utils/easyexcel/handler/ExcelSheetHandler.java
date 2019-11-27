@@ -5,7 +5,7 @@ import com.alibaba.excel.write.metadata.holder.WriteSheetHolder;
 import com.alibaba.excel.write.metadata.holder.WriteWorkbookHolder;
 import com.sbot.common.utils.AppContextUtil;
 import com.sbot.modules.system.entity.SysDict;
-import com.sbot.modules.system.entity.excel.UserExcel;
+import com.sbot.modules.system.entity.excel.SysUserExcel;
 import com.sbot.modules.system.services.SysDictService;
 import org.apache.poi.ss.usermodel.DataValidation;
 import org.apache.poi.ss.usermodel.DataValidationConstraint;
@@ -25,7 +25,7 @@ public class ExcelSheetHandler<T> implements SheetWriteHandler {
 
     private T obj;
 
-    private SysDictService dictService = (SysDictService) AppContextUtil.getBeanByName("DictService");
+    private SysDictService dictService = (SysDictService) AppContextUtil.getBeanByName("SysDictService");
 
 
     public ExcelSheetHandler(T obj) {
@@ -40,7 +40,7 @@ public class ExcelSheetHandler<T> implements SheetWriteHandler {
     @Override
     public void afterSheetCreate(WriteWorkbookHolder writeWorkbookHolder, WriteSheetHolder writeSheetHolder) {
 
-        if (obj instanceof UserExcel) {
+        if (obj instanceof SysUserExcel) {
             // 性别
             List<SysDict> sexList = dictService.getDictList("sex");
 

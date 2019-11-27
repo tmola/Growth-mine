@@ -97,7 +97,7 @@ public class SysUser {
      **/
 
     @Column(name = "DEL_FLAG")
-    private int delFlag;
+    private Integer delFlag;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "create_time")

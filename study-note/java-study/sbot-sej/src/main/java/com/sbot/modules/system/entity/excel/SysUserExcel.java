@@ -1,7 +1,6 @@
 package com.sbot.modules.system.entity.excel;
 
 import com.alibaba.excel.annotation.ExcelProperty;
-import com.alibaba.excel.metadata.BaseRowModel;
 import lombok.Data;
 
 import java.util.Date;
@@ -14,7 +13,7 @@ import java.util.Date;
  * @date 2019/11/22
  */
 @Data
-public class UserExcel  {
+public class SysUserExcel {
 
     /**
      * 账号名称
