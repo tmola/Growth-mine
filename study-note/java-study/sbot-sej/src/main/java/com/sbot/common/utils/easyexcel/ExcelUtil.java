@@ -110,7 +110,7 @@ public class ExcelUtil {
     }
 
     /**
-     * 获取单元格范围字符串
+     * 计算单元格范围位置坐标
      *
      * @param rowOffset 行偏移量(从1计数，第几行开始)
      * @param startCol  从第几列开始
@@ -128,7 +128,7 @@ public class ExcelUtil {
     }
 
     /**
-     * 获取一个单元格位置
+     * 计算一个单元格位置坐标
      *
      * @param rowOffset 第几行（从1开始）
      * @param colOffset 第几列（从1开始）
@@ -145,7 +145,7 @@ public class ExcelUtil {
     }
 
     /**
-     * 获取一行单元格位置
+     * 计算一行单元格位置坐标
      *
      * @param rowOffset 第几行（从1开始）
      * @param colOffset 第几列（从1开始）
@@ -203,12 +203,9 @@ public class ExcelUtil {
      * @param startRow      从第几行开始设置
      * @param cols          设置对应的列（按层级排序）
      */
-    public static void createCascadeDropdownBoxOnSheet(Sheet sheet,
-                                                       String dictSheetName,
-                                                       String[] roots,
-                                                       Map<String, String[]> map,
-                                                       int startRow,
-                                                       int... cols) {
+    public static void createCascadeDropdownBoxOnSheet(Sheet sheet, String dictSheetName,
+                                                       String[] roots, Map<String, String[]> map,
+                                                       int startRow, int... cols) {
         Workbook workbook = sheet.getWorkbook();
         Sheet dictSheet = workbook.createSheet(dictSheetName);
         workbook.setSheetHidden(workbook.getSheetIndex(dictSheetName), true);
@@ -222,7 +219,7 @@ public class ExcelUtil {
 
         // 从第2行开始添加各个父节点的名称管理器
         int i = 2;
-        String[] forimulaArr = new String[map.size()];
+//        String[] forimulaArr = new String[map.size()];
         for (Map.Entry<String, String[]> entry : map.entrySet()) {
             List<String> list = new ArrayList();
             list.add(entry.getKey());
@@ -233,7 +230,7 @@ public class ExcelUtil {
             name = workbook.createName();
             name.setNameName(entry.getKey());  /*key不可重复,将父区域名作为key*/
             String forimula = dictSheetName + "!" + getCellsRange(i, 2, list.size());
-            forimulaArr[i - 2] = forimula;
+//            forimulaArr[i - 2] = forimula;
             name.setRefersToFormula(forimula);
             ++i;
         }

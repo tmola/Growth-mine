@@ -59,12 +59,12 @@ public class EasyExcelUtil {
      */
     public static void exportTemplateByExcelFile(String filename, String sheetName, String entityName) throws IOException, ClassNotFoundException, IllegalAccessException, InstantiationException {
         Class clazz = Class.forName(excelBasePaket + entityName + "Excel");
-        String file = FileUtil.createFile("xlsx");
-        EasyExcel.write(file, clazz)
+        File file = FileUtil.createRomdonNameFile(FileUtil.templatePath, "xlsx");
+        EasyExcel.write(file.getAbsolutePath(), clazz)
                 .registerWriteHandler(new ExcelSheetHandler(clazz.newInstance()))
                 .sheet(sheetName)
                 .doWrite(null);
-        FileUtil.downloadFile(file, filename);
+        FileUtil.downloadFile(file.getAbsolutePath(), filename);
     }
 
     /**
@@ -85,9 +85,9 @@ public class EasyExcelUtil {
         if (datas == null || datas.size() == 0)
             return;
         List list = ToolUtil.list2Object(excel, datas);
-        String file = FileUtil.createFile("xlsx");
-        write(file, sheetName, excelClass, list);
-        FileUtil.downloadFile(file, filename);
+        File file = FileUtil.createRomdonNameFile(FileUtil.templatePath, "xlsx");
+        write(file.getAbsolutePath(), sheetName, excelClass, list);
+        FileUtil.downloadFile(file.getAbsolutePath(), filename);
     }
 
     /**
