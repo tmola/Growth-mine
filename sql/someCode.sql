@@ -137,6 +137,49 @@ INSERT INTO `sys_dict` (`id`, `catalog`, `code`, `text`, `sort`, `create_time`, 
 	('asdadsa', 'sex', 'male', '男', 1, NULL, NULL, NULL, NULL, 0);
 /*!40000 ALTER TABLE `sys_dict` ENABLE KEYS */;
 
+-- 导出  表 some_code.sys_excel 结构
+CREATE TABLE IF NOT EXISTS `sys_excel` (
+  `id` varchar(50) NOT NULL COMMENT '主键ID',
+  `entity_name` varchar(255) DEFAULT NULL COMMENT '实体类名称',
+  `entity_clazz` varchar(255) DEFAULT NULL COMMENT '实体类地址（包名+''.''+类名）',
+  `excel_name` varchar(255) DEFAULT NULL COMMENT 'excel类名称',
+  `excel_clazz` varchar(255) DEFAULT NULL COMMENT 'excel类地址（包名+''.''+类名）',
+  `deal_service_name` varchar(255) DEFAULT NULL COMMENT '服务处理类名称',
+  `service_clazz` varchar(255) DEFAULT NULL COMMENT '服务处理类地址（包名+''.''+类名）',
+  `begin_sheet` int(11) DEFAULT NULL COMMENT '开始sheet',
+  `begin_row` int(11) DEFAULT NULL COMMENT '开始行',
+  `max_row` int(11) DEFAULT NULL COMMENT '最大行',
+  `remarks` varchar(255) DEFAULT NULL COMMENT '备注',
+  `create_time` date NOT NULL COMMENT '创建日期',
+  `modify_time` date DEFAULT NULL COMMENT '修改日期',
+  `create_user` varchar(50) DEFAULT NULL COMMENT '创建者',
+  `modify_user` varchar(50) DEFAULT NULL COMMENT '修改者',
+  `del_flag` tinyint(4) DEFAULT NULL COMMENT '删除标识：0正常，1已删除',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_index` (`entity_name`,`excel_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='excel配置表';
+
+-- 正在导出表  some_code.sys_excel 的数据：~0 rows (大约)
+/*!40000 ALTER TABLE `sys_excel` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sys_excel` ENABLE KEYS */;
+
+-- 导出  表 some_code.sys_file 结构
+CREATE TABLE IF NOT EXISTS `sys_file` (
+  `id` varchar(50) NOT NULL COMMENT '主键ID',
+  `file_name` varchar(50) DEFAULT NULL COMMENT '文件名',
+  `file_size` bigint(20) DEFAULT NULL COMMENT '文件大小(单位:B)',
+  `file_type` varchar(50) DEFAULT NULL COMMENT '文件类型',
+  `path_url` varchar(50) DEFAULT NULL COMMENT '所在路径',
+  `user_id` varchar(50) DEFAULT NULL COMMENT '所有者ID',
+  `file_abs` varchar(50) DEFAULT NULL COMMENT '访问属性',
+  `upload_date` datetime DEFAULT NULL COMMENT '上传日期',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='文件表';
+
+-- 正在导出表  some_code.sys_file 的数据：~0 rows (大约)
+/*!40000 ALTER TABLE `sys_file` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sys_file` ENABLE KEYS */;
+
 -- 导出  表 some_code.sys_log 结构
 CREATE TABLE IF NOT EXISTS `sys_log` (
   `id` varchar(50) NOT NULL COMMENT '主键ID',
@@ -183,7 +226,7 @@ CREATE TABLE IF NOT EXISTS `sys_user` (
   `id` varchar(50) NOT NULL COMMENT '主键id',
   `name` varchar(50) NOT NULL COMMENT '账号名称',
   `real_name` varchar(50) DEFAULT NULL COMMENT '真实姓名',
-  `password` varchar(50) NOT NULL COMMENT '账号密匙',
+  `password` varchar(50) DEFAULT NULL COMMENT '账号密匙',
   `slat` varchar(50) DEFAULT NULL COMMENT '盐',
   `sex` varchar(50) DEFAULT NULL COMMENT '性别',
   `borndate` date DEFAULT NULL COMMENT '出生日期',
@@ -199,10 +242,19 @@ CREATE TABLE IF NOT EXISTS `sys_user` (
   UNIQUE KEY `列 3` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
 
--- 正在导出表  some_code.sys_user 的数据：~1 rows (大约)
+-- 正在导出表  some_code.sys_user 的数据：~10 rows (大约)
 /*!40000 ALTER TABLE `sys_user` DISABLE KEYS */;
 INSERT INTO `sys_user` (`id`, `name`, `real_name`, `password`, `slat`, `sex`, `borndate`, `phone`, `email`, `address`, `create_time`, `modify_time`, `create_user`, `modify_user`, `del_flag`) VALUES
-	('string', 'string', 'string', 'string', 'string', 'string', '2019-11-18', 'string', 'string', 'string', '2019-11-18', '2019-11-18', 'string', 'string', 0);
+	('2019-11-26-5cfc49fa82564ee572e86b0d', '1412.0', '123.0', '123456', NULL, 'male', '2019-09-08', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+	('2019-11-26-7acc4f0b9a9aaf325dc57777', '213.0', '123.0', '123456', NULL, 'famale', '2019-09-08', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+	('2019-11-26-eb08442abd685ef8242cfe67', '1213.0', '123.0', '123456', NULL, 'other', '2019-09-08', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+	('2019-11-26-ef354069a49f868c4285199e', '123.0', '123.0', '123456', NULL, 'other', '2019-09-08', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+	('2019-12-02-01f142c892c833568a495387', '广东', '揭阳', '123456', NULL, 'famale', NULL, NULL, NULL, NULL, '2019-12-02', NULL, NULL, NULL, 0),
+	('2019-12-02-48914667a97ae28ebdd39466', '四川', '成都', '123456', NULL, 'other', NULL, NULL, NULL, NULL, '2019-12-02', NULL, NULL, NULL, 0),
+	('2019-12-02-7cd64bedb995473ba7a93631', 'asa', 'asas', '123456', NULL, 'famale', NULL, NULL, NULL, NULL, '2019-12-02', NULL, NULL, NULL, 0),
+	('2019-12-02-e2814088891fb2e9b62ee77e', 'sasa', 'asas', '123456', NULL, 'other', NULL, NULL, NULL, NULL, '2019-12-02', NULL, NULL, NULL, 0),
+	('a2c8471640364351b5864c0187ccb3eb', 'jty', 'string', 'string', 'string', 'other', NULL, 'string', 'string', 'string', NULL, NULL, NULL, NULL, 0),
+	('string', 'string', 'string', 'string', 'string', 'string', '2019-11-26', 'string', 'string', 'string', '2019-11-18', '2019-11-18', 'string', 'string', 0);
 /*!40000 ALTER TABLE `sys_user` ENABLE KEYS */;
 
 -- 导出  表 some_code.test_dict 结构

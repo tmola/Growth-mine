@@ -14,8 +14,8 @@ import java.net.URLEncoder;
  * @date 2019/11/26
  */
 public class FileUtil {
-    public static String templatePath = "C:\\\\template";
-    public static String uploadPath = "C:\\\\upload";
+    public static String templatePath = "H:\\Growth-mine\\template";
+    public static String uploadPath = "H:\\Growth-mine\\upload";
 
     /**
      * 创建一个随机名称、指定后缀的文件
@@ -130,6 +130,8 @@ public class FileUtil {
         multipartFile.transferTo(dest);
         return dest.getAbsolutePath();
     }
+
+
 
 
 }

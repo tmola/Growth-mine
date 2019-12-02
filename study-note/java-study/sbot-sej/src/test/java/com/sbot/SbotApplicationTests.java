@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.lang.reflect.InvocationTargetException;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @SpringBootTest
@@ -59,13 +60,4 @@ class SbotApplicationTests {
 		System.out.println("xxx+!"+ExcelUtil.getColRange(1, 2, 26));
 
 	}
-
-	@Test
-	void test1(){
-
-		String s = "$a$1";
-		s=s.substring(0,s.lastIndexOf("$"));
-		System.out.println(s);
-	}
-
 }

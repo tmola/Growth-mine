@@ -37,6 +37,8 @@ public enum ResultCode {
     oldPasswordErros(-123, "原密码错误"),
     entityError(-124, "上传文件的实体对象不匹配"),
     exceptionError(-125, "服务异常错误"),
+    excelNotExitis(-100, "Excel处理实体不存在"),
+    excelNoData(0, "未发现数据"),
     ;
 
     private Integer key;

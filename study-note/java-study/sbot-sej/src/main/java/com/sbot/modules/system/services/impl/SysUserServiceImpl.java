@@ -39,7 +39,6 @@ public class SysUserServiceImpl implements SysUserService, Serializable {
     @Override
     public Map save(List<SysUser> users) {
         if (ToolUtil.isEmpty(users)) return OptRetMapUtil.optError("保存的数据不能为空");
-        Integer total = users.size();
         Integer success = 0;
         Integer field = 0;
         List<SysUser> fieldList = new ArrayList<>();
@@ -51,19 +50,10 @@ public class SysUserServiceImpl implements SysUserService, Serializable {
             } else {
                 user.setModifyTime(new Date());
             }
-            if (ToolUtil.isEmpty(user.getPassword())) {
-                user.setPassword("123456");
-            }
-            if (ToolUtil.isNotEmpty(user.getSexDictText())) {
-                String sex = dictRepository.getCode("sex", user.getSexDictText());
-                if (null != sex)
-                    user.setSex(sex);
-            }
-            SysUser savedUser = null;
+            SysUser savedUser;
             try {
                 savedUser = userRepository.saveAndFlush(user);
             } catch (Exception e) {
-                e.printStackTrace();
                 field++;
                 fieldList.add(user);
                 continue;
@@ -73,7 +63,7 @@ public class SysUserServiceImpl implements SysUserService, Serializable {
                 fieldList.add(user);
             } else success++;
         }
-        return OptRetMapUtil.saveOptResult(total, success, field, fieldList);
+        return OptRetMapUtil.saveOptResult(users.size(), success, field, fieldList);
     }
 
     @Override
@@ -107,22 +97,21 @@ public class SysUserServiceImpl implements SysUserService, Serializable {
             Page page = userRepository.findAll(QueryStrategy.ofAllLikeMatch(conditions, queryStrategy), conditions.ofPage(orders));
             return OptRetMapUtil.selectOptResult(page);
         } else {
-            List list = null;
-            try {
-                list = userRepository.findAll(QueryStrategy.ofAllLikeMatch(conditions, queryStrategy), Sort.by(orders));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            List list = userRepository.findAll(QueryStrategy.ofAllLikeMatch(conditions, queryStrategy), Sort.by(orders));
             return OptRetMapUtil.selectOptResult(list);
         }
     }
 
     @Override
-    public Map uploadExcelData(List<Object> datas) throws Exception {
+    public Map uploadExcelData(List<Object> datas){
         JSONArray jsonArray = new JSONArray(datas);
         List<SysUser> users = new ArrayList<>();
-        for (int i = 0; i < jsonArray.size(); i++)
-            users.add(jsonArray.getJSONObject(i).toJavaObject(SysUser.class));
+        for (int i = 0; i < jsonArray.size(); i++) {
+            SysUser user =  jsonArray.getJSONObject(i).toJavaObject(SysUser.class);
+            user.setSex(dictRepository.getCode("sex", user.getSex()));
+            user.setPassword("123456");
+            users.add(user);
+        }
         return save(users);
     }
 }

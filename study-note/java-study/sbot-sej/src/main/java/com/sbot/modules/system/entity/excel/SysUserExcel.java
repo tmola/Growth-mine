@@ -29,7 +29,7 @@ public class SysUserExcel {
 
 
     @ExcelProperty(value = {"性别"}, index = 2)
-    private String sexDictText;
+    private String sex;
 
     /**
      * 出生日期

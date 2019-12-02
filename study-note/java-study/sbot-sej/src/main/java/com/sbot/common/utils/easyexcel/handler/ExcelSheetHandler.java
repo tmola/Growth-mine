@@ -58,32 +58,31 @@ public class ExcelSheetHandler<T> implements SheetWriteHandler {
                 DataValidation sexValidation = sexHelper.createValidation(sexConstraint, sexCell);
                 writeSheetHolder.getSheet().addValidationData(sexValidation);
 
-                String[] shengf = new String[]{"四川", "广东"};
-                String[] shiq1 = new String[]{"成都", "泸州"};
-                String[] xianq1 = new String[]{"高新区", "新都区"};
-                String[] xianq2 = new String[]{"合江县", "叙永县"};
-                String[] shiq2 = new String[]{"广州", "揭阳"};
-                String[] xianq3 = new String[]{"广州中", "广州东"};
-                String[] xianq4 = new String[]{"潮汕", "揭阳小"};
-                String[] xianq5 = new String[]{"潮汕ds", "潮汕zs"};
-                Map<String, String[]> sexmap = new HashMap<>();
-                sexmap.put(shengf[0], shiq1);
-                sexmap.put(shengf[1], shiq2);
-                sexmap.put(shiq1[0], xianq1);
-                sexmap.put(shiq1[1], xianq2);
-                sexmap.put(shiq2[0], xianq3);
-                sexmap.put(shiq2[1], xianq4);
-                sexmap.put(xianq4[1], xianq5);
-                ExcelUtil.createCascadeDropdownBoxOnSheet(writeSheetHolder.getSheet(),
-                        "dict", shengf, sexmap, 2, 1, 2, 4, 5);
-                String[] ifx = new String[]{"是", "否"};
-                Map map = new HashMap();
-                map.put(ifx[0], null);
-                map.put(ifx[1], null);
-                ExcelUtil.createCascadeDropdownBoxOnSheet(writeSheetHolder.getSheet(),
-                        "dict2", ifx, map, 2, 6);
-
-
+//                String[] shengf = new String[]{"四川", "广东"};
+//                String[] shiq1 = new String[]{"成都", "泸州"};
+//                String[] xianq1 = new String[]{"高新区", "新都区"};
+//                String[] xianq2 = new String[]{"合江县", "叙永县"};
+//                String[] shiq2 = new String[]{"广州", "揭阳"};
+//                String[] xianq3 = new String[]{"广州中", "广州东"};
+//                String[] xianq4 = new String[]{"潮汕", "揭阳小"};
+//                String[] xianq5 = new String[]{"潮汕ds", "潮汕zs"};
+//                Map<String, String[]> sexmap = new HashMap<>();
+//                sexmap.put(shengf[0], shiq1);
+//                sexmap.put(shengf[1], shiq2);
+//                sexmap.put(shiq1[0], xianq1);
+//                sexmap.put(shiq1[1], xianq2);
+//                sexmap.put(shiq2[0], xianq3);
+//                sexmap.put(shiq2[1], xianq4);
+//                sexmap.put(xianq4[1], xianq5);
+//                ExcelUtil.createCascadeDropdownBoxOnSheet(writeSheetHolder.getSheet(),
+//                        "dict", shengf, sexmap, 2, 1, 2, 4, 5);
+//                String[] ifx = new String[]{"是", "否"};
+//                Map map = new HashMap();
+//                map.put(ifx[0], null);
+//                map.put(ifx[1], null);
+//                ExcelUtil.createCascadeDropdownBoxOnSheet(writeSheetHolder.getSheet(),
+//                        "dict2", ifx, map, 2, 6);
+//
             }
 
         }

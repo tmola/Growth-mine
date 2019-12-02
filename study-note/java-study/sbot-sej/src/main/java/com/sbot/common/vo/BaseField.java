@@ -20,17 +20,5 @@ import java.util.Date;
 @Data
 public class BaseField implements Serializable {
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "create_time")
-    private Date createTime;
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "modify_time")
-    private Date modifyTime;
-
-    @Column(name = "create_user")
-    private String createUser;
-
-    @Column(name = "modify_user")
-    private String modifyUser;
 }
