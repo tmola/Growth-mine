@@ -1,5 +1,6 @@
 package com.sbot;
 
+import com.sbot.common.utils.AppContextUtil;
 import com.sbot.common.utils.easyexcel.ExcelUtil;
 import com.sbot.common.utils.ToolUtil;
 import com.sbot.modules.system.entity.SysUser;
@@ -40,24 +41,28 @@ class SbotApplicationTests {
 		}
 	}
 
+//	@Test
+//	void test(){
+//		System.out.println(ExcelUtil.getCellRange(1, 1));
+//		System.out.println(ExcelUtil.getCellRange(1, 26));
+//		System.out.println(ExcelUtil.getCellRange(1, 27));
+//		System.out.println(ExcelUtil.getCellRange(1, 51));
+//		System.out.println(ExcelUtil.getCellRange(1, 52));
+//
+//		System.out.println(ExcelUtil.getRowRange(1, 1, 10));
+//		System.out.println(ExcelUtil.getRowRange(1, 26, 10));
+//		System.out.println(ExcelUtil.getRowRange(1, 27, 10));
+//		System.out.println(ExcelUtil.getRowRange(1, 51, 10));
+//		System.out.println(ExcelUtil.getRowRange(1, 52, 10));
+//
+//
+//		System.out.println("xxx+!"+ExcelUtil.getRowRange(1, 1, 1));
+//		System.out.println("xxx+!"+ExcelUtil.getRowRange(1, 2, 26));
+//		System.out.println("xxx+!"+ExcelUtil.getColRange(1, 2, 26));
+//
+//	}
+
 	@Test
-	void test(){
-		System.out.println(ExcelUtil.getCellRange(1, 1));
-		System.out.println(ExcelUtil.getCellRange(1, 26));
-		System.out.println(ExcelUtil.getCellRange(1, 27));
-		System.out.println(ExcelUtil.getCellRange(1, 51));
-		System.out.println(ExcelUtil.getCellRange(1, 52));
-
-		System.out.println(ExcelUtil.getRowRange(1, 1, 10));
-		System.out.println(ExcelUtil.getRowRange(1, 26, 10));
-		System.out.println(ExcelUtil.getRowRange(1, 27, 10));
-		System.out.println(ExcelUtil.getRowRange(1, 51, 10));
-		System.out.println(ExcelUtil.getRowRange(1, 52, 10));
-
-
-		System.out.println("xxx+!"+ExcelUtil.getRowRange(1, 1, 1));
-		System.out.println("xxx+!"+ExcelUtil.getRowRange(1, 2, 26));
-		System.out.println("xxx+!"+ExcelUtil.getColRange(1, 2, 26));
-
+	void test() throws Exception {
 	}
 }

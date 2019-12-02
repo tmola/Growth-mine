@@ -34,6 +34,11 @@ public class UserController {
         return ResultVO.success(userService.select(query));
     }
 
+    @PostMapping("delete")
+    public ResultVO delete(@RequestBody List<String> ids) throws Exception {
+        return ResultVO.success(userService.deleteByIds(ids));
+    }
+
 
 
 }

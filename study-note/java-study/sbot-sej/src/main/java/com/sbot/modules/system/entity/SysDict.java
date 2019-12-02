@@ -1,6 +1,5 @@
 package com.sbot.modules.system.entity;
 
-import com.sbot.common.vo.BaseField;
 import lombok.Data;
 
 import javax.persistence.*;

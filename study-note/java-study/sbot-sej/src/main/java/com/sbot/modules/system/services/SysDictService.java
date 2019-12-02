@@ -1,11 +1,10 @@
 package com.sbot.modules.system.services;
 
 
-import com.sbot.common.vo.QueryVO;
+import com.sbot.common.base.BaseService;
 import com.sbot.modules.system.entity.SysDict;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * 字典表Service接口
@@ -13,13 +12,7 @@ import java.util.Map;
  * @author ${author}
  * @version $v: ${version}, $time:${datetime} Exp $
  */
-public interface SysDictService {
-    Map deleteByIds(List<String> ids) throws Exception;
-
-    Map save(List<SysDict> dictList) throws Exception;
-
-    Map select(QueryVO searchVo) throws Exception;
-
+public interface SysDictService extends BaseService<SysDict> {
     String getTextByCode(String catalog, String code) throws Exception;
 
     List<SysDict> getDictList(String catalog);

@@ -1,9 +1,9 @@
 package com.sbot.modules.system.repository;
 
 
+import com.sbot.common.base.BaseRepository;
 import com.sbot.modules.system.entity.SysDict;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -18,11 +18,11 @@ import java.util.List;
  * @version $v: ${version}, $time:${datetime} Exp $
  */
 @Repository
-public interface SysDictRepository extends JpaRepository<SysDict, String>,JpaSpecificationExecutor {
+public interface SysDictRepository extends BaseRepository<SysDict> {
     @Transactional
     @Modifying
     @Query("update SysDict t set t.delFlag = 1  where t.id = ?1")
-    SysDict delelteById(String id);
+    Integer deleteRecordById(String id);
 
     @Query("select t.text from SysDict t  where t.delFlag = 0 and t.catalog = ?1 and t.code = ?2")
     String getText(String catalog, String code);
