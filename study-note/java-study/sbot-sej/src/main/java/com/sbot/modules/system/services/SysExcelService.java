@@ -11,5 +11,7 @@ import com.sbot.modules.system.entity.SysExcel;
  * @date 2019/12/2
  */
 public interface SysExcelService extends BaseService<SysExcel> {
+    SysExcel getByName(String entityName, String excelName);
 
+    SysExcel getByName(String entityName);
 }

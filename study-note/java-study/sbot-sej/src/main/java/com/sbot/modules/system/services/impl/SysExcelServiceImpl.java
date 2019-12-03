@@ -48,8 +48,14 @@ public class SysExcelServiceImpl implements SysExcelService {
         return null;
     }
 
+
     @Override
-    public Map uploadExcelData(List<Object> datas) throws Exception {
-        return null;
+    public SysExcel getByName(String entityName, String excelName) {
+        return excelRepository.getByName(entityName,excelName);
+    }
+
+    @Override
+    public SysExcel getByName(String entityName) {
+        return excelRepository.getByName(entityName);
     }
 }

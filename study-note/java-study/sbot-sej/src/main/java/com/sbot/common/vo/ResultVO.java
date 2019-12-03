@@ -57,6 +57,13 @@ public class ResultVO<T> {
         return ret;
     }
 
+    public static ResultVO exceptionError(RuntimeException e) {
+        ResultVO<?> ret = new ResultVO();
+        ret.code = ResultCode.fail.getKey();
+        ret.message = e.getMessage();
+        return ret;
+    }
+
     public static ResultVO runtimeExceptionError(RuntimeException e) {
         ResultVO<?> ret = new ResultVO();
         ret.code = ResultCode.exceptionError.getKey();

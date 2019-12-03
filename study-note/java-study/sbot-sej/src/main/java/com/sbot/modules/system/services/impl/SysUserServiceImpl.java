@@ -27,10 +27,6 @@ public class SysUserServiceImpl implements SysUserService {
     @Autowired
     private SysUserRepository userRepository;
 
-    @Autowired
-    private SysDictRepository dictRepository;
-
-
     @Override
     public Map save(List<SysUser> users) throws Exception {
         return BaseServiceOperator.save(userRepository, users);
@@ -50,18 +46,5 @@ public class SysUserServiceImpl implements SysUserService {
         List<Sort.Order> orders = new ArrayList<>();
         orders.add(new Sort.Order(Sort.Direction.ASC, "createTime"));
         return BaseServiceOperator.select(userRepository, queryVO, queryStrategy, orders);
-    }
-
-    @Override
-    public Map uploadExcelData(List<Object> datas) throws Exception {
-        JSONArray jsonArray = new JSONArray(datas);
-        List<SysUser> users = new ArrayList<>();
-        for (int i = 0; i < jsonArray.size(); i++) {
-            SysUser user =  jsonArray.getJSONObject(i).toJavaObject(SysUser.class);
-            user.setSex(dictRepository.getCode("sex", user.getSex()));
-            user.setPassword("123456");
-            users.add(user);
-        }
-        return save(users);
     }
 }

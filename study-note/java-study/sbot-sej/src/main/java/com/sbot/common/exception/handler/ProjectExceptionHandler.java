@@ -21,6 +21,7 @@ public class ProjectExceptionHandler {
         e.printStackTrace();
         if(e instanceof ProjectException)
             return ResultVO.exceptionError((ProjectException)e);
+
         return ResultVO.exceptionError(e);
     }
 }

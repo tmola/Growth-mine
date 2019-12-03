@@ -38,7 +38,4 @@ public class UserController {
     public ResultVO delete(@RequestBody List<String> ids) throws Exception {
         return ResultVO.success(userService.deleteByIds(ids));
     }
-
-
-
 }

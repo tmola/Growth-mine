@@ -1,6 +1,8 @@
 package com.sbot.common.utils.easyexcel;
 
 import com.alibaba.excel.EasyExcel;
+import com.alibaba.fastjson.JSONArray;
+import com.sbot.common.annotation.TranDict;
 import com.sbot.common.enums.ResultCode;
 import com.sbot.common.exception.ProjectException;
 import com.sbot.common.utils.AppContextUtil;
@@ -11,15 +13,17 @@ import com.sbot.common.utils.easyexcel.listener.ExcelListener;
 import com.sbot.common.vo.QueryVO;
 import com.sbot.common.vo.ResultVO;
 import com.sbot.modules.system.entity.SysExcel;
-import com.sbot.modules.system.repository.SysExcelRepository;
-import org.apache.poi.ss.formula.functions.T;
-import org.aspectj.weaver.ast.Test;
+import com.sbot.modules.system.services.SysDictService;
+import com.sbot.modules.system.services.SysExcelService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.PostConstruct;
 import java.io.*;
-import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -30,11 +34,29 @@ import java.util.Map;
  * @version 1.0
  * @date 2019/11/26
  */
+@Component
 public class EasyExcelUtil {
+    public static EasyExcelUtil easyExcelUtil;
+
+
     public static final String excelBasePaket = "com.sbot.modules.system.entity.excel.";
+    public static final String selectMethodName = "select";
+    public static final String savaMethodName = "save";
+    public static final String deleteMethodName = "deleteByIds";
 
     @Autowired
-    private static SysExcelRepository excelRepository;
+    private SysExcelService excelService;
+
+    @Autowired
+    private SysDictService dictService;
+
+    @PostConstruct
+    public void init() {
+        easyExcelUtil = this;
+        easyExcelUtil.excelService = this.excelService;
+        easyExcelUtil.dictService = this.dictService;
+    }
+
 
     /**
      * 读取并解析Excel文档
@@ -93,7 +115,7 @@ public class EasyExcelUtil {
         if (datas == null || datas.size() == 0)
             return;
 
-        List list = ToolUtil.list2ExcelList(excel, datas);
+        List list = list2ExcelList(excel, datas);
         File file = FileUtil.createRomdonNameFile(FileUtil.templatePath, "xlsx");
         write(file.getAbsolutePath(), sheetName, excelClass, list);
         FileUtil.downloadFile(file.getAbsolutePath(), filename);
@@ -141,7 +163,6 @@ public class EasyExcelUtil {
     }
 
 
-
     /**
      * 导出数据为xlsx文档
      *
@@ -156,12 +177,12 @@ public class EasyExcelUtil {
                                   String entityName,
                                   String excelName,
                                   QueryVO query) throws Exception {
-        SysExcel sysExcel = excelRepository.getByName(entityName, excelName);
-        if(sysExcel == null)
+        SysExcel sysExcel = easyExcelUtil.excelService.getByName(entityName, excelName);
+        if (sysExcel == null)
             throw new ProjectException(ResultCode.excelNotExitis);
         Class excelClazz = Class.forName(sysExcel.getExcelClazz());
         Object excelTemplate = excelClazz.newInstance();
-        final String selectMethodName = "select";
+
         Object service = AppContextUtil.getBeanByName(sysExcel.getDealServiceName());
         Class entityClass = Class.forName(sysExcel.getEntityClazz());
         query.setTerms(ToolUtil.Json2Object(query.getTerms(), entityClass));
@@ -170,7 +191,7 @@ public class EasyExcelUtil {
         List datas = (List) ((Map) ret).get("list");
         if (datas == null || datas.size() == 0)
             throw new ProjectException(ResultCode.excelNoData);
-        List list = ToolUtil.list2ExcelList(excelTemplate, datas);
+        List list = list2ExcelList(excelTemplate, datas);
         File file = FileUtil.createRomdonNameFile(FileUtil.templatePath, "xlsx");
         write(file.getAbsolutePath(), sheetName, excelClazz, list);
         FileUtil.downloadFile(file.getAbsolutePath(), filename);
@@ -181,27 +202,30 @@ public class EasyExcelUtil {
      *
      * @param file       Excel文件
      * @param entityName “实体”名
-     * @param excelName “Excel实体”名
+     * @param excelName  “Excel实体”名
      */
-    public static ResultVO importData(MultipartFile file, String entityName,String excelName) throws Exception {
-        SysExcel sysExcel = excelRepository.getByName(entityName, excelName);
-        if(sysExcel == null)
+    public static ResultVO importData(MultipartFile file, String entityName, String excelName) throws Exception {
+        SysExcel sysExcel = easyExcelUtil.excelService.getByName(entityName, excelName);
+        if (sysExcel == null)
             throw new ProjectException(ResultCode.excelNotExitis);
-        Class excelClazz = Class.forName(sysExcel.getExcelName());
+        Class excelClazz = Class.forName(sysExcel.getExcelClazz());
         String filePath = FileUtil.uploadFile(file);
-        List<Object> datas = read(filePath, sysExcel.getBeginSheet()-1, sysExcel.getBeginRow()-1, excelClazz);
+        List<Object> datas = read(filePath, sysExcel.getBeginSheet() - 1, sysExcel.getBeginRow() - 1, excelClazz);
         FileUtil.deleteFile(filePath);
         Object service = AppContextUtil.getBeanByName(sysExcel.getDealServiceName());
-        Method method = service.getClass().getMethod("uploadExcelData", List.class);
-        return ResultVO.success(method.invoke(service, datas));
+        Class entityClazz = Class.forName(sysExcel.getEntityClazz());
+        Object entityObject = entityClazz.newInstance();
+
+        Method method = service.getClass().getMethod("save", List.class);
+        return ResultVO.success(method.invoke(service, excelList2List(entityObject, datas)));
     }
 
     /**
      * 导出xlsx数据模板
      */
-    public static void exportTemplate(String filename, String sheetName, String entityName,String excelName) throws Exception {
-        SysExcel sysExcel = excelRepository.getByName(entityName, excelName);
-        if(sysExcel == null)
+    public static void exportTemplate(String filename, String sheetName, String entityName, String excelName) throws Exception {
+        SysExcel sysExcel = easyExcelUtil.excelService.getByName(entityName, excelName);
+        if (sysExcel == null)
             throw new ProjectException(ResultCode.excelNotExitis);
 
         Class clazz = Class.forName(sysExcel.getExcelClazz());
@@ -211,5 +235,74 @@ public class EasyExcelUtil {
                 .sheet(sheetName)
                 .doWrite(null);
         FileUtil.downloadFile(file.getAbsolutePath(), filename);
+    }
+
+    public static <T> List<Object> list2ExcelList(Object s, List<T> list) {
+        List<Object> newList = new ArrayList<>();
+        Class<?> clazz1 = s.getClass();
+        Field[] fields1 = clazz1.getDeclaredFields();
+        if (null != list && !list.isEmpty()) {
+            for (T data : list) {
+                Object object = null;
+                Class<?> clazz = data.getClass();
+                Field[] fields2 = clazz.getDeclaredFields();
+                try {
+                    object = clazz1.newInstance();
+                } catch (InstantiationException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+                for (int i = 0; i < fields1.length; i++) {
+                    Field field1 = fields1[i];
+                    for (int j = 0; j < fields2.length; j++) {
+                        Field field2 = fields2[j];
+                        String f1 = field1.getName();
+                        String f2 = field2.getName();
+                        if ((f2.equals(f1 + "DictText")) || (field2.getAnnotation(TranDict.class) == null && f1.equals(f2))) {
+                            try {
+                                field1.setAccessible(true);
+                                field2.setAccessible(true);
+                                field1.set(object, field2.get(data));
+                            } catch (IllegalAccessException e) {
+                                e.printStackTrace();
+                            }
+                            break;
+                        }
+                    }
+                }
+                newList.add(object);
+            }
+        }
+        return newList;
+    }
+
+
+    public static <T> List<T> excelList2List(T t, List<Object> list) throws Exception {
+        JSONArray jsonArray = new JSONArray(list);
+        List<T> records = new ArrayList<>();
+        Class clazz = t.getClass();
+        Field[] fields = clazz.getDeclaredFields();
+        List<String> dictCodes = new ArrayList<>();
+        List<Method> getmethods = new ArrayList<>();
+        List<Method> setmethods = new ArrayList<>();
+        for (int j = 0; j < fields.length; j++) {
+            Field field = fields[j];
+            if (field.getAnnotation(TranDict.class) != null) {
+                TranDict tranDict = field.getAnnotation(TranDict.class);
+                dictCodes.add(tranDict.dict());
+                getmethods.add(clazz.getDeclaredMethod("get" + ToolUtil.upperFirst(field.getName())));
+                setmethods.add(clazz.getDeclaredMethod("set" + ToolUtil.upperFirst(field.getName()), String.class));
+            }
+        }
+        for (int i = 0; i < jsonArray.size(); i++) {
+            T record = (T) jsonArray.getJSONObject(i).toJavaObject(clazz);
+            for (int j = 0; j < getmethods.size(); j++) {
+                String dictCode = easyExcelUtil.dictService.getCode(dictCodes.get(j), (String) getmethods.get(j).invoke(record));
+                setmethods.get(j).invoke(record, dictCode);
+            }
+            records.add(record);
+        }
+        return records;
     }
 }

@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.sbot.common.annotation.TranDict;
+import com.sbot.modules.system.entity.SysUser;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.formula.functions.T;
 import org.springframework.boot.SpringApplication;
@@ -58,6 +59,7 @@ public class ToolUtil {
         return date + id.substring(9, 13) + id.substring(14, 18)
                 + id.substring(19, 23) + id.substring(24);
     }
+
 
     /**
      * 获取文件后缀名  eg: '.txt'
@@ -157,45 +159,7 @@ public class ToolUtil {
     }
 
 
-    public static <T> List<Object> list2ExcelList(Object s, List<T> list) {
-        List<Object> newList = new ArrayList<>();
-        Class<?> clazz1 = s.getClass();
-        Field[] fields1 = clazz1.getDeclaredFields();
-        if (null != list && !list.isEmpty()) {
-            for (T data : list) {
-                Object object = null;
-                Class<?> clazz = data.getClass();
-                Field[] fields2 = clazz.getDeclaredFields();
-                try {
-                    object = clazz1.newInstance();
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-                for (int i = 0; i < fields1.length; i++) {
-                    Field field1 = fields1[i];
-                    for (int j = 0; j < fields2.length; j++) {
-                        Field field2 = fields2[j];
-                        String f1 = field1.getName();
-                        String f2 = field2.getName();
-                        if ((f2.equals(f1 + "DictText")) || (field2.getAnnotation(TranDict.class) == null && f1.equals(f2))) {
-                            try {
-                                field1.setAccessible(true);
-                                field2.setAccessible(true);
-                                field1.set(object, field2.get(data));
-                            } catch (IllegalAccessException e) {
-                                e.printStackTrace();
-                            }
-                            break;
-                        }
-                    }
-                }
-                newList.add(object);
-            }
-        }
-        return newList;
-    }
+
 
     public static Object setFieldValueBySetMethod(Object object, String fieldName, Object value) throws NoSuchFieldException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         Class clazz = object.getClass();

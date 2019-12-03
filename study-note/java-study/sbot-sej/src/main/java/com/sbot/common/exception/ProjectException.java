@@ -22,4 +22,10 @@ public class ProjectException extends Exception {
         code=  resultCode.getKey();
         typeMessage = resultCode.getValue();
     }
+
+    public ProjectException(String message){
+        super(message);
+        code= ResultCode.fail.getKey();
+        typeMessage = message;
+    }
 }

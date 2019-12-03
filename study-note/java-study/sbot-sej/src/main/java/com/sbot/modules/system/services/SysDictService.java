@@ -18,4 +18,6 @@ public interface SysDictService extends BaseService<SysDict> {
     List<SysDict> getDictList(String catalog);
 
     List<String> getTextList(String catalog);
+
+    String getCode(String catalog, String text);
 }

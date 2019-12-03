@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.NoRepositoryBean;
 
 import javax.transaction.Transactional;
+import java.io.Serializable;
 import java.util.List;
 
 /**

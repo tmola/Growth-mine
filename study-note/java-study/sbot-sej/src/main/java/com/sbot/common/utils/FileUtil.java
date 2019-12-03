@@ -132,6 +132,34 @@ public class FileUtil {
     }
 
 
+    public static void readFile(String fileFullPath) {
+        File file = new File(fileFullPath);
+        FileInputStream fis = null;
+        BufferedInputStream bis = null;
+        File wfile = new File(""); ;
 
-
+        FileOutputStream ois = null;
+        byte[] buffer = new byte[2048];
+        try {
+            fis = new FileInputStream(file);
+            bis = new BufferedInputStream(fis);
+            ois  = new FileOutputStream(wfile);
+            while (bis.available() > 0) {
+                int size = bis.read(buffer);
+                System.out.print(size +": ");
+                System.out.println(buffer);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(bis!=null)bis.close();
+                if(fis!=null)fis.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

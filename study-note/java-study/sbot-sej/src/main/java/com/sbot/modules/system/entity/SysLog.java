@@ -11,61 +11,86 @@ import java.util.Date;
  * @version $v: ${version}, $time:${datetime} Exp $
  */
 @Entity
-@Table(name="sys_log")
+@Table(name = "sys_log")
 public class SysLog implements Serializable {
-
-/** 主键ID **/
+    /**
+     * 主键ID
+     **/
     @Id
-    @Column(name="ID" )
+    @Column(name = "ID")
     private String id;
 
-/** 日志等级 **/
-    @Column(name="LOG_LEVEL" )
+    /**
+     * 日志等级
+     **/
+    @Column(name = "LOG_LEVEL")
     private String logLevel;
 
-/** 日志类型 **/
-    @Column(name="LOG_TYPE" )
+    /**
+     * 日志类型
+     **/
+    @Column(name = "LOG_TYPE")
     private String logType;
 
-/** 日志内容 **/
-    @Column(name="LOG_CONTENT" )
+    /**
+     * 日志内容
+     **/
+    @Column(name = "LOG_CONTENT")
     private String logContent;
 
-/** 请求方法名 **/
-    @Column(name="REQ_METHOD" )
+    /**
+     * 请求方法名
+     **/
+    @Column(name = "REQ_METHOD")
     private String reqMethod;
 
-/** 请求路径 **/
-    @Column(name="REQ_URL" )
+    /**
+     * 请求路径
+     **/
+    @Column(name = "REQ_URL")
     private String reqUrl;
 
-/** 请求参数 **/
-    @Column(name="REQ_PARAMS" )
+    /**
+     * 请求参数
+     **/
+    @Column(name = "REQ_PARAMS")
     private String reqParams;
 
-/** 请求返回结果 **/
-    @Column(name="REQ_RESULT" )
+    /**
+     * 请求返回结果
+     **/
+    @Column(name = "REQ_RESULT")
     private String reqResult;
 
-/** 请求IP **/
-    @Column(name="REQ_IP" )
+    /**
+     * 请求IP
+     **/
+    @Column(name = "REQ_IP")
     private String reqIp;
 
-/** 操作类型 **/
-    @Column(name="OPT_TYPE" )
+    /**
+     * 操作类型
+     **/
+    @Column(name = "OPT_TYPE")
     private String optType;
 
-/** 操作用户 **/
-    @Column(name="OPT_USER" )
+    /**
+     * 操作用户
+     **/
+    @Column(name = "OPT_USER")
     private String optUser;
 
-/** 操作时间 **/
+    /**
+     * 操作时间
+     **/
     @Temporal(TemporalType.DATE)
-    @Column(name="OPT_DATE" )
+    @Column(name = "OPT_DATE")
     private Date optDate;
 
-/** 操作耗时 **/
-    @Column(name="OPT_COST_TIME" )
+    /**
+     * 操作耗时
+     **/
+    @Column(name = "OPT_COST_TIME")
     private Long optCostTime;
 
     public String getId() {
@@ -75,6 +100,7 @@ public class SysLog implements Serializable {
     public void setId(String id) {
         this.id = id;
     }
+
     public String getLogLevel() {
         return logLevel;
     }
@@ -82,6 +108,7 @@ public class SysLog implements Serializable {
     public void setLogLevel(String logLevel) {
         this.logLevel = logLevel;
     }
+
     public String getLogType() {
         return logType;
     }
@@ -89,6 +116,7 @@ public class SysLog implements Serializable {
     public void setLogType(String logType) {
         this.logType = logType;
     }
+
     public String getLogContent() {
         return logContent;
     }
@@ -96,6 +124,7 @@ public class SysLog implements Serializable {
     public void setLogContent(String logContent) {
         this.logContent = logContent;
     }
+
     public String getReqMethod() {
         return reqMethod;
     }
@@ -103,6 +132,7 @@ public class SysLog implements Serializable {
     public void setReqMethod(String reqMethod) {
         this.reqMethod = reqMethod;
     }
+
     public String getReqUrl() {
         return reqUrl;
     }
@@ -110,6 +140,7 @@ public class SysLog implements Serializable {
     public void setReqUrl(String reqUrl) {
         this.reqUrl = reqUrl;
     }
+
     public String getReqParams() {
         return reqParams;
     }
@@ -117,6 +148,7 @@ public class SysLog implements Serializable {
     public void setReqParams(String reqParams) {
         this.reqParams = reqParams;
     }
+
     public String getReqResult() {
         return reqResult;
     }
@@ -124,6 +156,7 @@ public class SysLog implements Serializable {
     public void setReqResult(String reqResult) {
         this.reqResult = reqResult;
     }
+
     public String getReqIp() {
         return reqIp;
     }
@@ -131,6 +164,7 @@ public class SysLog implements Serializable {
     public void setReqIp(String reqIp) {
         this.reqIp = reqIp;
     }
+
     public String getOptType() {
         return optType;
     }
@@ -138,6 +172,7 @@ public class SysLog implements Serializable {
     public void setOptType(String optType) {
         this.optType = optType;
     }
+
     public String getOptUser() {
         return optUser;
     }
@@ -145,6 +180,7 @@ public class SysLog implements Serializable {
     public void setOptUser(String optUser) {
         this.optUser = optUser;
     }
+
     public Date getOptDate() {
         return optDate;
     }
@@ -152,6 +188,7 @@ public class SysLog implements Serializable {
     public void setOptDate(Date optDate) {
         this.optDate = optDate;
     }
+
     public Long getOptCostTime() {
         return optCostTime;
     }

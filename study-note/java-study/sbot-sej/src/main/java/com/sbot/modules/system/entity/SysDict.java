@@ -13,32 +13,44 @@ import java.util.Date;
  */
 @Data
 @Entity
-@Table(name="sys_dict")
+@Table(name = "sys_dict")
 public class SysDict {
 
-/** 主键 **/
+    /**
+     * 主键
+     **/
     @Id
-    @Column(name="ID" )
+    @Column(name = "ID")
     private String id;
 
-/** 目录 **/
-    @Column(name="CATALOG" )
+    /**
+     * 目录
+     **/
+    @Column(name = "CATALOG")
     private String catalog;
 
-/** 代码 **/
-    @Column(name="CODE" )
+    /**
+     * 代码
+     **/
+    @Column(name = "CODE")
     private String code;
 
-/** 描述 **/
-    @Column(name="TEXT" )
+    /**
+     * 描述
+     **/
+    @Column(name = "TEXT")
     private String text;
 
-/** 排序 **/
-    @Column(name="SORT" )
+    /**
+     * 排序
+     **/
+    @Column(name = "SORT")
     private Integer sort;
 
-/** 删除标识：0正常，1已删除 **/
-    @Column(name="DEL_FLAG" )
+    /**
+     * 删除标识：0正常，1已删除
+     **/
+    @Column(name = "DEL_FLAG")
     private Integer delFlag;
 
     @Temporal(TemporalType.DATE)

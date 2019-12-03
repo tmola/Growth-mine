@@ -24,4 +24,8 @@ public interface SysExcelRepository extends BaseRepository<SysExcel> {
             "and t.entityName = ?1\n" +
             "and t.excelName = ?2\n")
     SysExcel getByName(String entityName, String excelName);
+
+    @Query(value = "select distinct t from SysExcel t where t.delFlag=0 \n " +
+            "and t.entityName = ?1\n")
+    SysExcel getByName(String entityName);
 }

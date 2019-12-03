@@ -36,6 +36,4 @@ public class SysRole  extends BaseField {
      **/
     @Column(name = "ROLE_DESC")
     private String roleDesc;
-
-
 }

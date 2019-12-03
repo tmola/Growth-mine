@@ -1,6 +1,8 @@
 package com.sbot.modules.system.repository;
 
 
+import com.sbot.common.base.BaseRepository;
+import com.sbot.modules.system.entity.RelevRoleAuth;
 import com.sbot.modules.system.entity.RelevUserRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -13,6 +15,6 @@ import org.springframework.stereotype.Repository;
  * @version $v: ${version}, $time:${datetime} Exp $
  */
 @Repository
-public interface RelevUserRoleRepository extends JpaRepository<RelevUserRole, String>,JpaSpecificationExecutor {
+public interface RelevUserRoleRepository extends BaseRepository<RelevUserRole> {
 
 }

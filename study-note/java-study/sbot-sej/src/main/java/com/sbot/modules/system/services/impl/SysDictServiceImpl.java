@@ -1,7 +1,6 @@
 package com.sbot.modules.system.services.impl;
 
 
-
 import com.sbot.common.base.BaseService;
 import com.sbot.common.base.BaseServiceOperator;
 import com.sbot.common.utils.OptRetMapUtil;
@@ -40,14 +39,14 @@ public class SysDictServiceImpl implements SysDictService, Serializable {
     @Modifying
     @Override
     public Map save(List<SysDict> dictList) throws Exception {
-      return BaseServiceOperator.save(dictRepository, dictList);
+        return BaseServiceOperator.save(dictRepository, dictList);
     }
 
     @Transactional
     @Modifying
     @Override
     public Map deleteByIds(List<String> ids) throws Exception {
-       return BaseServiceOperator.deleteByIds(dictRepository, ids);
+        return BaseServiceOperator.deleteByIds(dictRepository, ids);
     }
 
     @Override
@@ -55,12 +54,7 @@ public class SysDictServiceImpl implements SysDictService, Serializable {
         QueryStrategy queryStrategy = new QueryStrategy();
         List<Sort.Order> orders = new ArrayList<>();
         orders.add(new Sort.Order(Sort.Direction.ASC, "sort"));
-        return BaseServiceOperator.select(dictRepository, queryVO, queryStrategy,orders);
-    }
-
-    @Override
-    public Map uploadExcelData(List<Object> datas) {
-        return null;
+        return BaseServiceOperator.select(dictRepository, queryVO, queryStrategy, orders);
     }
 
     @Override
@@ -76,5 +70,10 @@ public class SysDictServiceImpl implements SysDictService, Serializable {
     @Override
     public List<String> getTextList(String catalog) {
         return dictRepository.getTextList(catalog);
+    }
+
+    @Override
+    public String getCode(String catalog, String text) {
+        return dictRepository.getCode(catalog, text);
     }
 }

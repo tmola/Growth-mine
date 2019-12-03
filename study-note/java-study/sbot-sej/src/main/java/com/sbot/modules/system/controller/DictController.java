@@ -36,4 +36,9 @@ public class DictController {
     public ResultVO select(@RequestBody QueryVO<SysDict> query) throws Exception{
         return ResultVO.success(dictService.select(query));
     }
+
+    @PostMapping("delete")
+    public ResultVO delete(@RequestBody List<String> ids) throws Exception {
+        return ResultVO.success(dictService.deleteByIds(ids));
+    }
 }

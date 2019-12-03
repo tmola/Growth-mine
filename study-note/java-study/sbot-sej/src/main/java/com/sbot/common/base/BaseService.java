@@ -18,5 +18,4 @@ public interface BaseService<T> {
     Map select(QueryVO<T> queryVO) throws Exception;
     Map save(List<T> records) throws Exception;
     Map deleteByIds(List<String> ids) throws Exception;
-    Map uploadExcelData(List<Object> datas) throws Exception;
 }

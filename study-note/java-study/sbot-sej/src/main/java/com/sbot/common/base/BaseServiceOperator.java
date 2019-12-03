@@ -36,13 +36,18 @@ public class BaseServiceOperator {
         Method setModifyUser = clz.getMethod("setModifyUser", String.class);
         List<T> fieldList = new ArrayList<>();
         for (T record : records) {
-            if (ToolUtil.isEmpty(getId.invoke(record))) {
-                setId.invoke(record, ToolUtil.randomID35());
-                setDelFlag.invoke(record, 0);
-                setCreateTime.invoke(record, new Date());
-            } else {
-                setModifyTime.invoke(record,new Date());
-            }
+            if (Objects.nonNull(setId))
+                if (ToolUtil.isEmpty(getId.invoke(record))) {
+                    if (Objects.nonNull(setId))
+                        setId.invoke(record, ToolUtil.randomID35());
+                    if (Objects.nonNull(setDelFlag))
+                        setDelFlag.invoke(record, 0);
+                    if (Objects.nonNull(setCreateTime))
+                        setCreateTime.invoke(record, new Date());
+                } else {
+                    if (Objects.nonNull(setModifyTime))
+                        setModifyTime.invoke(record, new Date());
+                }
             T savedRecord;
             try {
                 savedRecord = repository.saveAndFlush(record);
