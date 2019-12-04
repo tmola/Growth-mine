@@ -24,7 +24,7 @@ public class FileUtil {
      * @throws IOException
      */
     public static File createRomdonNameFile(String dir, String suffix) throws IOException {
-        String fileName = ToolUtil.randomID35() + "." + suffix;
+        String fileName = IDUtil.randomID35() + "." + suffix;
         File file = createFile(dir, fileName);
         return file;
     }
@@ -42,18 +42,6 @@ public class FileUtil {
             return true;
         }
         return false;
-    }
-
-    /**
-     * 在目录下添加多个文件
-     *
-     * @param dir
-     * @param filenames
-     */
-    public static void addFile(String dir, String... filenames) throws IOException {
-        for (String filename : filenames) {
-            createFile(dir, filename);
-        }
     }
 
     /**
@@ -125,43 +113,9 @@ public class FileUtil {
             return null;
         String originalFilename = multipartFile.getOriginalFilename();
         String suffix = ToolUtil.getFileSuffix(originalFilename);
-        String newFilename = ToolUtil.randomID35() + suffix;
+        String newFilename = IDUtil.randomID35() + suffix;
         File dest = createFile(uploadPath, newFilename, suffix.replace(".", ""));
         multipartFile.transferTo(dest);
         return dest.getAbsolutePath();
-    }
-
-
-    public static void readFile(String fileFullPath) {
-        File file = new File(fileFullPath);
-        FileInputStream fis = null;
-        BufferedInputStream bis = null;
-        File wfile = new File("");
-
-        FileOutputStream ois = null;
-        byte[] buffer = new byte[2048];
-        try {
-            fis = new FileInputStream(file);
-            bis = new BufferedInputStream(fis);
-            ois = new FileOutputStream(wfile);
-            while (bis.available() > 0) {
-                int size = bis.read(buffer);
-                System.out.print(size + ": ");
-                System.out.println(buffer);
-                ois.write(buffer);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (ois != null) ois.close();
-                if (bis != null) bis.close();
-                if (fis != null) fis.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
 }

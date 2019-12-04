@@ -1,6 +1,6 @@
 package com.uniform.common.utils;
 
-import com.sbot.common.exception.ProjectException;
+import com.uniform.common.exception.BusinessException;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -21,8 +21,8 @@ public class DateTimeUitl {
      * 获取日期中的年、月、日、等信息
      * use eg: getFieldFromDate(new Date(), Calendar.YEAR)
      */
-    public static int getFieldFromDate(Date date, int calendarField) throws ProjectException {
-        if (calendarField < 1 || calendarField > 7) throw new ProjectException("获取日期时间信息格式错误");
+    public static int getFieldFromDate(Date date, int calendarField) throws BusinessException {
+        if (calendarField < 1 || calendarField > 7) throw new BusinessException("获取日期时间信息格式错误");
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         return calendar.get(calendarField);
@@ -34,13 +34,13 @@ public class DateTimeUitl {
         return dateStr;
     }
 
-    public static Date string2Date(String dateStr, String format) throws ProjectException {
+    public static Date string2Date(String dateStr, String format) throws BusinessException {
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);
         Date date;
         try {
             date = dateFormat.parse(dateStr);
         } catch (ParseException e) {
-            throw new ProjectException("日期格式错误");
+            throw new BusinessException("日期格式错误");
         }
         return date;
     }

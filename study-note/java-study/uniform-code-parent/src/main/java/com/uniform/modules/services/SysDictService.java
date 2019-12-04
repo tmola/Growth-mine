@@ -1,8 +1,8 @@
 package com.uniform.modules.services;
 
 
-import com.sbot.common.base.BaseService;
-import com.sbot.modules.system.entity.SysDict;
+import com.uniform.common.base.BaseService;
+import com.uniform.modules.entity.SysDict;
 
 import java.util.List;
 

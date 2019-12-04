@@ -1,9 +1,9 @@
-package com.uniform.modules.services.entity;
+package com.uniform.modules.entity;
 
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.uniform.common.annotation.TranDict;
+import com.uniform.common.annotation.DictField;
 import com.uniform.common.base.BaseField;
 import lombok.Data;
 
@@ -49,8 +49,9 @@ public class SysUser extends BaseField {
     /**
      * 性别
      **/
-    @TranDict(dict = "sex")
+    @DictField(dict = "sex")
     @Column(name = "SEX")
+    @ExcelProperty(value = "性别", index = 2)
     private String sex;
 
     @Transient
@@ -67,6 +68,7 @@ public class SysUser extends BaseField {
     /**
      * 联系电话
      **/
+    @ExcelProperty(value = {"联系电话"}, index = 4)
     @Column(name = "PHONE")
     private String phone;
 

@@ -18,9 +18,6 @@ import javax.transaction.Transactional;
  */
 @NoRepositoryBean
 public interface BaseRepository<T> extends JpaRepository<T, String>, JpaSpecificationExecutor {
-    @Transactional
-    @Modifying
-    Integer deleteRecordById(String id);
 
-    Integer updateDelFlagById(String id);
+    Integer deleteRecordById(String id);
 }

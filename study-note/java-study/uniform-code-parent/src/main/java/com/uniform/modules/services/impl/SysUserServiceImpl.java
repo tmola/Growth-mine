@@ -1,16 +1,23 @@
 package com.uniform.modules.services.impl;
 
 
-import com.sbot.common.annotation.DictResult;
-import com.sbot.common.base.BaseServiceOperator;
-import com.sbot.common.utils.QueryStrategy;
-import com.sbot.common.vo.QueryVO;
-import com.sbot.modules.system.entity.SysUser;
-import com.sbot.modules.system.repository.SysUserRepository;
-import com.sbot.modules.system.services.SysUserService;
+import com.uniform.common.annotation.DictResult;
+import com.uniform.common.base.BaseServiceOperator;
+import com.uniform.common.utils.QueryStrategy;
+import com.uniform.common.vo.QueryVO;
+import com.uniform.modules.entity.SysUser;
+import com.uniform.modules.repository.SysUserRepository;
+import com.uniform.modules.services.SysUserService;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +34,9 @@ public class SysUserServiceImpl implements SysUserService {
     @Autowired
     private SysUserRepository userRepository;
 
-    @Override
+    @Transactional(propagation = Propagation.NESTED)
     public Map save(List<SysUser> users) throws Exception {
-        return BaseServiceOperator.save(userRepository, users);
+        return new BaseServiceOperator().save(userRepository, users);
     }
 
     @Override

@@ -16,9 +16,9 @@ import java.util.List;
  */
 @Data
 public class QueryVO<T> {
-    /*ture:实体字段查询 false:关键字查找*/
+    /*true:实体字段查询 false:关键字查找*/
     Boolean objectQuery;
-    /*ture:分页查询 false:非分页查询*/
+    /*true:分页查询 false:非分页查询*/
     Boolean pageQuery;
 
     Integer page;
@@ -26,10 +26,10 @@ public class QueryVO<T> {
     String keyword;
     T terms;
 
-    Pageable ofPage() {
+    public Pageable ofPage() {
         return PageRequest.of(page, pageSize);
     }
-    Pageable ofSortPage(List<Sort.Order> orders) {
+    public Pageable ofPage(List<Sort.Order> orders) {
         return PageRequest.of(page, pageSize, Sort.by(orders));
     }
 }

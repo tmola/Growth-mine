@@ -1,9 +1,10 @@
 package com.uniform.common.aspect;
 
 import com.alibaba.fastjson.JSONObject;
-import com.sbot.common.annotation.TranDict;
-import com.sbot.common.utils.ToolUtil;
-import com.sbot.modules.system.services.SysDictService;
+
+import com.uniform.common.annotation.DictField;
+import com.uniform.common.utils.ToolUtil;
+import com.uniform.modules.services.SysDictService;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -41,19 +42,15 @@ public class DictAspect {
 
     @Around("doDictResultPoint()")
     public Object aroundDictConvert(ProceedingJoinPoint point) throws Throwable {
-        log.debug("LogInfo:-----------------------------------");
+        log.info("LogInfo:-----------------------------------");
         long t1 = System.currentTimeMillis();
-
         Object result = point.proceed();
-
         long t2 = System.currentTimeMillis();
-        log.debug("获取数据耗时：" + (t2 - t1) + " ms");
-
+        log.info("获取数据耗时：" + (t2 - t1) + " ms");
         this.parseDictText(result);
-
         long t3 = System.currentTimeMillis();
-        log.debug("字典转换耗时：" + (t3 - t2) + " ms");
-        log.debug("LogInfo:-----------------------------------");
+        log.info("字典转换耗时：" + (t3 - t2) + " ms");
+        log.info("LogInfo:-----------------------------------");
         return result;
     }
 
@@ -68,45 +65,21 @@ public class DictAspect {
                     if (listData != null && ((List) listData).size() > 0) {
                         List records = (List) listData;
                         Class clazz = records.get(0).getClass();
-                        Field[] fields = clazz.getDeclaredFields();
-                        Method[] methods = clazz.getDeclaredMethods();
                         for (Object record : (List) listData) {
                             for (Field field : ToolUtil.getAllField(record)) {
-                                if (field.getAnnotation(TranDict.class) != null) {
+                                if (field.getAnnotation(DictField.class) != null) {
                                     Method method = clazz.getMethod("get" + ToolUtil.upperFirst(field.getName()));
-                                    String dict = field.getAnnotation(TranDict.class).dict();
+                                    String dict = field.getAnnotation(DictField.class).dict();
                                     String code = String.valueOf(method.invoke(record));//转换字典代码
                                     String dictText = dictService.getTextByCode(dict, code);
                                     Method methodDict = clazz.getDeclaredMethod("set" + ToolUtil.upperFirst(field.getName()) + DICT_TEXT_SUFFIX, new Class[]{String.class});
                                     methodDict.invoke(record, dictText);
                                 }
                             }
-
-//                            ObjectMapper mapper = new ObjectMapper();
-//                            String json = "{}";
-//                            try {
-//                                json = mapper.writeValueAsString(record);
-//                            } catch (JsonProcessingException e) {
-//                                log.error("Json解析失败：" + e.getMessage(), e);
-//                            }
-//                            JSONObject item = JSON.parseObject(json);
-//                            for (Field field : ObjectUtil.getAllField(record)) {
-//                                if (field.getAnnotation(TranDict.class) != null) {
-//
-//                                    String dict = field.getAnnotation(TranDict.class).dict();
-//                                    String code = String.valueOf(item.get(field.getName()));
-//                                    //转换字典代码
-//                                    String dictText = dictService.getTextByCode(dict, code);
-//                                    item.put(field.getName() + DICT_TEXT_SUFFIX, dictText);
-//                                }
-//                            }//for-field
-//                            ;
-//                            items.add(item);
-                        }//for-record
-//                        ((Map) result).put("list", items);
-                    }//if-listDta not null
-                }// if-Map or Page
-            }//if-retData not null
+                        }
+                    }
+                }
+            }
         }
     }
 

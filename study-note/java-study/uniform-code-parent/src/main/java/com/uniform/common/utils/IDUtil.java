@@ -18,7 +18,7 @@ public class IDUtil {
     }
 
     public static String randomID35() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
         String id = UUID.randomUUID().toString();
         String date = sdf.format(new Date());
         return date + id.substring(9, 13) + id.substring(14, 18)

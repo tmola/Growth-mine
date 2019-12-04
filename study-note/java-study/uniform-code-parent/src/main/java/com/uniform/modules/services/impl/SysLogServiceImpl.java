@@ -1,9 +1,12 @@
 package com.uniform.modules.services.impl;
 
 
-import com.sbot.common.vo.QueryVO;
-import com.sbot.modules.system.entity.SysLog;
-import com.sbot.modules.system.services.SysLogService;
+import com.uniform.common.base.BaseServiceOperator;
+import com.uniform.common.vo.QueryVO;
+import com.uniform.modules.entity.SysLog;
+import com.uniform.modules.repository.SysLogRepository;
+import com.uniform.modules.services.SysLogService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
@@ -19,6 +22,8 @@ import java.util.Map;
 @Service
 public class SysLogServiceImpl implements SysLogService, Serializable {
 
+    @Autowired
+    private SysLogRepository logRepository;
 
     @Override
     public Map select(QueryVO<SysLog> queryVO) throws Exception {
@@ -32,6 +37,6 @@ public class SysLogServiceImpl implements SysLogService, Serializable {
 
     @Override
     public Map deleteByIds(List<String> ids) throws Exception {
-        return null;
+        return BaseServiceOperator.deleteByIds(logRepository, ids);
     }
 }

@@ -3,7 +3,7 @@ package com.uniform.modules.services;
 
 
 import com.uniform.common.base.BaseService;
-import com.uniform.modules.services.entity.SysUser;
+import com.uniform.modules.entity.SysUser;
 
 /**
  * 用户表Service接口

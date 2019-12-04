@@ -2,7 +2,7 @@ package com.uniform.modules.services;
 
 
 import com.uniform.common.base.BaseService;
-import com.uniform.modules.services.entity.SysLog;
+import com.uniform.modules.entity.SysLog;
 
 /**
  * 系统日志表Service接口
@@ -11,4 +11,5 @@ import com.uniform.modules.services.entity.SysLog;
  * @version $v: ${version}, $time:${datetime} Exp $
  */
 public interface SysLogService extends BaseService<SysLog> {
+
 }

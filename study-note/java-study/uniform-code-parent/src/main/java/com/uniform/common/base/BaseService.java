@@ -1,6 +1,6 @@
 package com.uniform.common.base;
 
-import com.sbot.common.vo.QueryVO;
+import com.uniform.common.vo.QueryVO;
 
 import java.util.List;
 import java.util.Map;

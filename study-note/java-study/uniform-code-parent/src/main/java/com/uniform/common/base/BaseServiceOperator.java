@@ -1,13 +1,23 @@
 package com.uniform.common.base;
 
-import com.sbot.common.enums.ResultCode;
-import com.sbot.common.exception.ProjectException;
-import com.sbot.common.utils.OptRetMapUtil;
-import com.sbot.common.utils.QueryStrategy;
-import com.sbot.common.utils.ToolUtil;
-import com.sbot.common.vo.QueryVO;
+import com.uniform.common.enums.ResultCode;
+import com.uniform.common.exception.BusinessException;
+import com.uniform.common.utils.*;
+import com.uniform.common.vo.QueryVO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.UnexpectedRollbackException;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
+import org.springframework.transaction.reactive.TransactionCallback;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import java.lang.reflect.Method;
 import java.util.*;
@@ -21,9 +31,15 @@ import java.util.*;
  * @version 1.o
  * @date 2019/12/2 21:06
  */
+
 public class BaseServiceOperator {
-    public static <T> Map save(BaseRepository<T> repository, List<T> records) throws Exception {
-        if (ToolUtil.isEmpty(records)) return OptRetMapUtil.optError("保存的数据不能为空");
+//    @Autowired
+//    private  PlatformTransactionManager transactionManager;
+
+    @Transactional(noRollbackFor = RuntimeException.class)
+    @Modifying
+    public <T> Map save(BaseRepository<T> repository, List<T> records) throws Exception {
+        if (ObjectUtil.isEmpty(records)) return OptRetMapUtil.optError("保存的数据不能为空");
         Integer success = 0;
         Integer field = 0;
         Class clz = records.get(0).getClass();
@@ -37,9 +53,9 @@ public class BaseServiceOperator {
         List<T> fieldList = new ArrayList<>();
         for (T record : records) {
             if (Objects.nonNull(setId))
-                if (ToolUtil.isEmpty(getId.invoke(record))) {
+                if (ObjectUtil.isEmpty(getId.invoke(record))) {
                     if (Objects.nonNull(setId))
-                        setId.invoke(record, ToolUtil.randomID35());
+                        setId.invoke(record, IDUtil.randomID35());
                     if (Objects.nonNull(setDelFlag))
                         setDelFlag.invoke(record, 0);
                     if (Objects.nonNull(setCreateTime))
@@ -49,23 +65,34 @@ public class BaseServiceOperator {
                         setModifyTime.invoke(record, new Date());
                 }
             T savedRecord;
-            try {
+            TransactionStatus getTransaction = null;
+//            try {
                 savedRecord = repository.saveAndFlush(record);
-            } catch (Exception e) {
-                field++;
-                fieldList.add(record);
-                continue;
-            }
+                getTransaction = TransactionAspectSupport.currentTransactionStatus();
+//            } catch (Exception e) {
+//                e.getMessage();
+//                field++;
+//                fieldList.add(record);
+//                if(e instanceof RuntimeException) {
+//                    throw  e;
+////                    transactionManager.rollback(getTransaction);
+//                    TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+//                }
+//                continue;
+//            }
             if (Objects.isNull(savedRecord)) {
                 field++;
                 fieldList.add(record);
-            } else success++;
+            } else {
+//                transactionManager.commit(getTransaction);
+                success++;
+            }
         }
         return OptRetMapUtil.saveOptResult(records.size(), success, field, fieldList);
     }
 
     public static <T> Map deleteByIds(BaseRepository<T> repository, List<String> ids) throws Exception {
-        if (ToolUtil.isEmpty(ids)) return OptRetMapUtil.optError("删除的数据不能为空");
+        if (ObjectUtil.isEmpty(ids)) return OptRetMapUtil.optError("删除的数据不能为空");
         Integer total = ids.size();
         Integer success = 0;
         Integer field = 0;
@@ -88,9 +115,9 @@ public class BaseServiceOperator {
     }
 
     public static <T> Map select(BaseRepository<T> repository, QueryVO<T> queryVO, QueryStrategy queryStrategy, List<Sort.Order> orders) throws Exception {
-        if (queryVO.isPageable()) {
+        if (queryVO.getPageQuery()) {
             if (queryVO.getPage() < 0 || queryVO.getPageSize() <= 0)
-                throw new ProjectException(ResultCode.exceptionError);
+                throw new BusinessException(ResultCode.serviceException);
             Page page = repository.findAll(QueryStrategy.ofAllLikeMatch(queryVO, queryStrategy), queryVO.ofPage(orders));
             return OptRetMapUtil.selectOptResult(page);
         } else {

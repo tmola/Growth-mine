@@ -1,4 +1,4 @@
-package com.uniform.modules.services.entity;
+package com.uniform.modules.entity;
 
 import lombok.Data;
 

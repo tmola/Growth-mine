@@ -1,4 +1,4 @@
-package com.uniform.modules.services.entity;
+package com.uniform.modules.entity;
 
 import com.uniform.common.base.BaseField;
 import lombok.Data;

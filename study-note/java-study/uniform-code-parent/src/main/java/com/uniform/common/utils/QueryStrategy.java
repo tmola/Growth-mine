@@ -1,6 +1,6 @@
 package com.uniform.common.utils;
 
-import com.sbot.common.vo.QueryVO;
+import com.uniform.common.vo.QueryVO;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.Predicate;
@@ -132,18 +132,17 @@ public class QueryStrategy {
                 for (final PropertyDescriptor pd : beanInfo.getPropertyDescriptors()) {
                     final Object value = pd.getReadMethod().invoke(prod, (Object[]) null);
                     if (!(value instanceof Class) && !ignoredFields.contains(pd.getName())) {
-                        if (searchVo.isObject()) {
+                        if (searchVo.getObjectQuery()) {
                             if (value != null && !value.equals("")) {
                                 preList.add(cb.like(root.get(pd.getName()).as(String.class), String.valueOf(value)));
                             }
                         } else {
-                            if (searchVo.getSearchWord() != null && !searchVo.getSearchWord().equals("")) {
-                                preList.add(cb.like(root.get(pd.getName()).as(String.class), searchVo.getSearchWord()));
+                            if (searchVo.getKeyword() != null && !searchVo.getKeyword().equals("")) {
+                                preList.add(cb.like(root.get(pd.getName()).as(String.class), searchVo.getKeyword()));
                             }
                         }
                     }
                 }
-                preList.add(cb.equal(root.get(DEL_FLAG).as(String.class), String.valueOf(0)));
             } catch (IntrospectionException e) {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {
@@ -151,9 +150,11 @@ public class QueryStrategy {
             } catch (InvocationTargetException e) {
                 e.printStackTrace();
             }
+
             Predicate[] pres = new Predicate[preList.size()];
-            if (!searchVo.isObject() && preList.size() > 0)
-                return query.where(cb.or(preList.toArray(pres))).getRestriction();
+            if (!searchVo.getObjectQuery() && preList.size() > 0)
+                return query.where(cb.or(preList.toArray(pres)), cb.and(cb.equal(root.get(DEL_FLAG).as(String.class), String.valueOf(0)))).getRestriction();
+            preList.add(cb.and(cb.equal(root.get(DEL_FLAG).as(String.class), String.valueOf(0))));
             return query.where(preList.toArray(pres)).getRestriction();
         };
         return specification;

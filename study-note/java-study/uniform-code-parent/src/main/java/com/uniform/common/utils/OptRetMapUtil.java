@@ -45,15 +45,6 @@ public class OptRetMapUtil {
         result.put("totalSize", list.size());
         return result;
     }
-    public static <T> Map selectOptResult(List<T> list, Pageable pageable) {
-        Map<String, Object> result = new HashMap();
-        result.put("type", Type.SELECT_PAGE.value);
-        result.put("list", list);
-        result.put("totalSize", list.size());
-        result.put("page", pageable.getPageNumber());
-        result.put("pagesize", pageable.getPageSize());
-        return result;
-    }
     public static Map selectOptResult(Page page) {
         Map<String, Object> result = new HashMap();
         result.put("type", Type.SELECT_PAGE.value);
@@ -62,12 +53,6 @@ public class OptRetMapUtil {
         result.put("totalElements", page.getTotalElements());
         result.put("number", page.getNumber());
         result.put("pageable", page.getPageable());
-        return result;
-    }
-    public static <T> Map selectOptResult(T t) {
-        Map<String, Object> result = new HashMap();
-        result.put("type", Type.SELECT_PAGE.value);
-        result.put("data", t);
         return result;
     }
     public static Map optError() {
