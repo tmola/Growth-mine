@@ -1,4 +1,4 @@
-package com.sbot.common.base;
+package com.uniform.common.base;
 
 import lombok.Data;
 

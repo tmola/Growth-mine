@@ -1,4 +1,4 @@
-package com.sbot.common.utils;
+package com.uniform.common.utils;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

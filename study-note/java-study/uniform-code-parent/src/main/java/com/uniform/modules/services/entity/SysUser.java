@@ -1,11 +1,10 @@
-package com.sbot.modules.system.entity;
+package com.uniform.modules.services.entity;
 
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-
-import com.sbot.common.annotation.TranDict;
-import com.sbot.common.base.BaseField;
+import com.uniform.common.annotation.TranDict;
+import com.uniform.common.base.BaseField;
 import lombok.Data;
 
 import javax.persistence.*;
