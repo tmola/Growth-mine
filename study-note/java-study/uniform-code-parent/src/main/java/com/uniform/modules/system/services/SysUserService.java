@@ -5,6 +5,9 @@ package com.uniform.modules.services;
 import com.uniform.common.base.BaseService;
 import com.uniform.modules.entity.SysUser;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * 用户表Service接口
  *
@@ -12,4 +15,5 @@ import com.uniform.modules.entity.SysUser;
  * @version $v: ${version}, $time:${datetime} Exp $
  */
 public interface SysUserService extends BaseService<SysUser> {
+    Map toSave(List<SysUser> users);
 }

@@ -3,6 +3,9 @@ package com.uniform.modules.services.impl;
 
 import com.uniform.common.annotation.DictResult;
 import com.uniform.common.base.BaseServiceOperator;
+import com.uniform.common.utils.IDUtil;
+import com.uniform.common.utils.ObjectUtil;
+import com.uniform.common.utils.OptRetMapUtil;
 import com.uniform.common.utils.QueryStrategy;
 import com.uniform.common.vo.QueryVO;
 import com.uniform.modules.entity.SysUser;
@@ -19,9 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 用户表Service接口实现
@@ -53,5 +54,34 @@ public class SysUserServiceImpl implements SysUserService {
         List<Sort.Order> orders = new ArrayList<>();
         orders.add(new Sort.Order(Sort.Direction.ASC, "createTime"));
         return BaseServiceOperator.select(userRepository, queryVO, queryStrategy, orders);
+    }
+
+    @Override
+    public Map toSave(List<SysUser> users) {
+        if (ObjectUtil.isEmpty(users)) return OptRetMapUtil.optError("保存的数据不能为空");
+        Integer success = 0;
+        Integer field = 0;
+        List<SysUser> fieldList = new ArrayList<>();
+        for (SysUser user : users) {
+            if (ObjectUtil.isEmpty(user.getId())) {
+                user.setId(IDUtil.randomID35());
+                user.setDelFlag(0);
+                user.setCreateTime(new Date());
+            } else {
+                user.setModifyTime(new Date());
+            }
+            SysUser savedRecord;
+            try {
+                savedRecord = this.userRepository.save(user);
+            }catch (Exception e){
+                field ++;
+                continue;
+            }
+            if(Objects.nonNull(savedRecord))
+                success++;
+            else
+                field ++;
+        }
+        return OptRetMapUtil.saveOptResult(users.size(), success,field, null);
     }
 }

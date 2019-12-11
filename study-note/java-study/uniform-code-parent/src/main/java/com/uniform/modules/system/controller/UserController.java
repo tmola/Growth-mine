@@ -43,4 +43,9 @@ public class UserController {
     public ResultVO delete(@RequestBody List<String> ids) throws Exception {
         return ResultVO.successful(userService.deleteByIds(ids));
     }
+
+    @PostMapping("toSave")
+    public ResultVO toSave(@RequestBody List<SysUser> users) throws Exception {
+        return ResultVO.successful(userService.toSave(users));
+    }
 }
