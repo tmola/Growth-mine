@@ -5,6 +5,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 @Data
@@ -18,6 +20,9 @@ public class QueryVO<T> {
     Integer pageSize;
     String keyword;
     T terms;
+
+    List<String> descOrderBy;
+    List<String> ascOrderBy;
 
     Pageable ofPage(List<Sort.Order> orders) {
         return PageRequest.of(page, pageSize);

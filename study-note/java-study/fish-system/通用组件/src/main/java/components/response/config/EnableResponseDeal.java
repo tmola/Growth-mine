@@ -1,6 +1,5 @@
 package components.response.config;
 
-import components.response.config.ResponseConfigure;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.ElementType;

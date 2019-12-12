@@ -87,11 +87,25 @@ public class BaseServiceOperator {
     }
 
     public static <T> Map select(BaseRepository<T> repository, QueryVO<T> queryVO, List<Sort.Order> orders) throws Exception {
+        List orderList = new ArrayList();
+        if (queryVO.getDescOrderBy() != null) {
+            for (String descField : queryVO.getDescOrderBy()) {
+                orderList.add(new Sort.Order(Sort.Direction.DESC, descField));
+            }
+        }
+
+        if (queryVO.getAscOrderBy() != null) {
+            for (String ascField : queryVO.getAscOrderBy()) {
+                orderList.add(new Sort.Order(Sort.Direction.ASC, ascField));
+            }
+        }
+        if (orders != null)
+            orderList.addAll(orders);
         if (queryVO.getPageQuery()) {
-            Page page = repository.findAll(queryVO.ofPage(orders));
+            Page page = repository.findAll(queryVO.ofPage(orderList));
             return OptRetMapUtil.selectOptResult(page);
         } else {
-            List list = repository.findAll(Sort.by(orders));
+            List list = repository.findAll(Sort.by(orderList));
             return OptRetMapUtil.selectOptResult(list);
         }
     }

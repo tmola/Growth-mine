@@ -9,23 +9,21 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>fish-components</artifactId>
-    <name>通用组件</name>
+    <artifactId>fish-config</artifactId>
+    <name>系统配置</name>
     <dependencies>
+        <!--		swagger-->
         <dependency>
-            <groupId>com.fish</groupId>
-            <artifactId>fish-utils</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.9.2</version>
         </dependency>
         <dependency>
-            <groupId>com.fish</groupId>
-            <artifactId>fish-utils</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.9.2</version>
         </dependency>
     </dependencies>
-    <!--    <name>通用组件</name>-->
 
 
 </project>
