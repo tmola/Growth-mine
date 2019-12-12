@@ -1,8 +1,8 @@
-package com.uniform.modules.services;
+package com.uniform.modules.system.services;
 
 
 import com.uniform.common.base.BaseService;
-import com.uniform.modules.entity.SysLog;
+import com.uniform.modules.system.entity.SysLog;
 
 /**
  * 系统日志表Service接口

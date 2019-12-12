@@ -1,4 +1,4 @@
-package com.uniform.modules.entity.excel;
+package com.uniform.modules.system.entity.excel;
 
 import com.alibaba.excel.annotation.ExcelProperty;
 import lombok.Data;

@@ -1,5 +1,7 @@
 package fish.util;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.math.BigDecimal;
 import java.util.Random;
 
@@ -91,5 +93,17 @@ public class StringUtil {
             }
         }
         return rStr.toString();
+    }
+
+
+    public static String maskMobile(String content) {
+        final String OVERLAY = "****";
+        final int START = 3;
+        final int END = 7;
+
+        if (StringUtils.isEmpty(content)) {
+            return "";
+        }
+        return StringUtils.overlay(content, OVERLAY, START, END);
     }
 }

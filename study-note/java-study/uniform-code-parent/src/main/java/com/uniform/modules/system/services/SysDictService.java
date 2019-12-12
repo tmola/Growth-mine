@@ -1,8 +1,8 @@
-package com.uniform.modules.services;
+package com.uniform.modules.system.services;
 
 
 import com.uniform.common.base.BaseService;
-import com.uniform.modules.entity.SysDict;
+import com.uniform.modules.system.entity.SysDict;
 
 import java.util.List;
 

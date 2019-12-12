@@ -1,12 +1,12 @@
-package com.uniform.modules.services.impl;
+package com.uniform.modules.system.services.impl;
 
 
 import com.uniform.common.base.BaseServiceOperator;
 import com.uniform.common.utils.QueryStrategy;
 import com.uniform.common.vo.QueryVO;
-import com.uniform.modules.entity.SysExcel;
-import com.uniform.modules.repository.SysExcelRepository;
-import com.uniform.modules.services.SysExcelService;
+import com.uniform.modules.system.entity.SysExcel;
+import com.uniform.modules.system.repository.SysExcelRepository;
+import com.uniform.modules.system.services.SysExcelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;

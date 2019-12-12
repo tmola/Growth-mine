@@ -2,74 +2,102 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c19a85b2-dc1a-425d-b1b8-8be752c4a77a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/design/common/excel/ApplicationContextUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/design/common/excel/ExcelSheetHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/design/common/exception/ProjectException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/design/common/exception/ProjectExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/design/common/exception/ResultVo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/design/common/exception/ReturnMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/common/annotation/DictResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/common/annotation/TranDict.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/common/aspect/DictAspect.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/common/config/SwaggerConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/common/enums/ResultCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/common/exception/ProjectException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/common/handler/ProjectExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/common/utils/AppContextUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/common/utils/FileUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/common/utils/HttpUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/common/utils/OptRetMapUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/common/utils/QueryStrategy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/common/utils/ToolUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/common/utils/easyexcel/EasyExcelUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/common/utils/easyexcel/handler/ExcelSheetHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/common/utils/easyexcel/listener/ExcelListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/common/vo/BaseField.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/common/vo/QueryVO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/common/vo/ResultVO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/modules/system/controller/CommonController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/modules/system/controller/DictController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/modules/system/controller/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/modules/system/entity/RelevRoleAuth.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/modules/system/entity/RelevUserRole.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/modules/system/entity/SysAuthority.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/modules/system/entity/SysDict.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/modules/system/entity/SysFile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/modules/system/entity/SysLog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/modules/system/entity/SysRole.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/modules/system/entity/SysUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/modules/system/entity/excel/UserExcel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/modules/system/repository/RelevRoleAuthRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/modules/system/repository/RelevUserRoleRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/modules/system/repository/SysAuthorityRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/modules/system/repository/SysDictRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/modules/system/repository/SysLogRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/modules/system/repository/SysRoleRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/modules/system/repository/SysUserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/modules/system/services/RelevRoleAuthService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/modules/system/services/RelevUserRoleService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/modules/system/services/SysAuthorityService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/modules/system/services/SysDictService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/modules/system/services/SysLogService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/modules/system/services/SysRoleService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/modules/system/services/SysUserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/modules/system/services/impl/RelevRoleAuthServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/modules/system/services/impl/RelevUserRoleServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/modules/system/services/impl/SysAuthorityServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/modules/system/services/impl/SysDictServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/modules/system/services/impl/SysLogServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/modules/system/services/impl/SysRoleServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sbot-sej/src/main/java/com/sbot/modules/system/services/impl/SysUserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/design/common/util/ExcelUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/design/common/excel/ExcelUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/design/common/util/QueryPredicate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/design/common/util/QueryPredicate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/design/module/system/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/design/module/system/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/design/module/system/repository/SysDictRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/design/module/system/repository/SysDictRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/design/module/system/services/SysDictService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/design/module/system/services/SysDictService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/design/module/system/services/SysUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/design/module/system/services/SysUserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/design/module/system/services/impl/SysDictServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/design/module/system/services/impl/SysDictServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/design/module/system/services/impl/SysUserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/design/module/system/services/impl/SysUserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/design/ComDesignCodeApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/design/ComDesignCodeApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fish-system/开发工具/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fish-system/系统服务/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fish-system/系统服务/src/main/java/com/fish/controller/FishTestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fish-system/系统服务/src/main/java/com/fish/entity/FishDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fish-system/系统服务/src/main/java/com/fish/entity/FishDict.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fish-system/通用组件/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fish-system/通用组件/src/main/java/components/response/config/EnableResponseDeal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fish-system/通用组件/src/main/java/components/response/config/IgnoreUnifiedResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fish-system/通用组件/src/main/java/components/response/config/ResponseAdvice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fish-system/通用组件/src/main/java/components/response/config/ResponseConfigure.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fish-system/通用组件/src/main/java/components/response/config/ResponseProperties.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fish-system/通用组件/src/main/java/components/response/enums/BusinessErrorCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fish-system/通用组件/src/main/java/components/response/enums/ResponseCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fish-system/通用组件/src/main/java/components/response/exception/BusinessException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fish-system/通用组件/src/main/java/components/response/exception/ResponseExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fish-system/通用组件/src/main/java/components/response/vo/ResponseVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fish-system/通用组件/src/main/java/components/transdict/DictAspect.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fish-system/通用组件/src/main/java/components/transdict/DictField.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fish-system/通用组件/src/main/java/components/transdict/TextField.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fish-system/通用组件/src/main/java/components/transdict/TransDict.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fish-system/通用组件/src/main/resources/response.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fish-top/common/src/main/java/annotation/DictAspect.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fish-top/common/src/main/java/annotation/DictField.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fish-top/common/src/main/java/annotation/TextField.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fish-top/common/src/main/java/annotation/TransDict.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fish-top/system/src/main/java/com/fish/entity/FishDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fish-top/自动装配/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fish-top/自动装配/src/main/java/config/Author.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fish-top/自动装配/src/main/java/config/ConfigConfigure.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fish-top/自动装配/src/main/java/config/ConfigProperties.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fish-top/自动装配/src/main/resources/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../.idea/Growth-mine.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../daily-note/2019-12/3_2.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../base/基础(持续学习).md" beforeDir="false" afterPath="$PROJECT_DIR$/../base/基础(持续学习).md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../base/拦截器.md" beforeDir="false" afterPath="$PROJECT_DIR$/../base/拦截器.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../base/集合框架.md" beforeDir="false" afterPath="$PROJECT_DIR$/../base/集合框架.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fish-top/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../fish-top/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fish-top/system/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../fish-top/system/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fish-top/system/src/main/java/com/fish/FishTopApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../fish-top/system/src/main/java/com/fish/FishTopApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fish-top/system/src/main/java/com/fish/controller/FishController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../fish-top/system/src/main/java/com/fish/controller/FishController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fish-top/system/src/test/java/com/fish/FishTopApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../fish-top/system/src/test/java/com/fish/FishTopApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fish-top/unit/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../fish-top/un/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fish-top/unit/src/main/java/fish/unit/EnableGlobalDispose.java" beforeDir="false" afterPath="$PROJECT_DIR$/../fish-top/un/src/main/java/fish/unit/EnableGlobalDispose.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fish-top/unit/src/main/java/fish/unit/GlobalProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/../fish-top/un/src/main/java/fish/unit/GlobalProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fish-top/unit/src/main/java/fish/unit/config/GlobalConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../fish-top/un/src/main/java/fish/unit/config/GlobalConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fish-top/unit/src/main/java/fish/unit/exception/BusinessErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/../fish-top/un/src/main/java/fish/unit/exception/BusinessErrorCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fish-top/unit/src/main/java/fish/unit/exception/BusinessException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../fish-top/un/src/main/java/fish/unit/exception/BusinessException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fish-top/unit/src/main/java/fish/unit/exception/handler/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../fish-top/un/src/main/java/fish/unit/exception/handler/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fish-top/unit/src/main/java/fish/unit/response/GlobalResponseAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/../fish-top/un/src/main/java/fish/unit/response/GlobalResponseAdvice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fish-top/unit/src/main/java/fish/unit/response/ResponseCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/../fish-top/un/src/main/java/fish/unit/response/ResponseCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fish-top/unit/src/main/java/fish/unit/response/ResponseVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../fish-top/un/src/main/java/fish/unit/response/ResponseVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fish-top/unit/src/main/resources/dispose.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../fish-top/un/src/main/resources/dispose.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fish-top/utils/src/main/java/fish/util/StringUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../fish-top/utils/src/main/java/fish/util/StringUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../top/common/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../top/modules/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../top/system/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../top/utils/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/common/annotation/DictTextField.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/common/annotation/DictTextField.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/common/aspect/DictAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/common/aspect/DictAspect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/common/base/BaseServiceOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/common/base/BaseServiceOperator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/common/enums/ResultCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/common/enums/ResultCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/common/enums/SqlExceptionCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/common/enums/SqlExceptionCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/common/utils/CaptchaUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/common/utils/CaptchaUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/common/utils/ClassUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/common/utils/ClassUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/common/utils/ObjectUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/common/utils/ObjectUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/common/utils/OptRetMapUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/common/utils/OptRetMapUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/common/utils/QueryRules.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/common/utils/QueryRules.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/common/utils/StringUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/common/utils/StringUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/common/utils/easyexcel/EasyExcelUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/common/utils/easyexcel/EasyExcelUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/common/utils/easyexcel/handler/ExcelSheetHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/common/utils/easyexcel/handler/ExcelSheetHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/controller/DictController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/controller/DictController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/controller/PublicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/controller/PublicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/entity/SysDict.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/entity/SysDict.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/entity/SysExcel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/entity/SysExcel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/entity/SysLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/entity/SysLog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/entity/SysUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/entity/SysUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/entity/excel/SysDictExcel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/entity/excel/SysDictExcel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/entity/excel/SysUserExcel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/entity/excel/SysUserExcel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/repository/SysDictRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/repository/SysDictRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/repository/SysExcelRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/repository/SysExcelRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/repository/SysLogRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/repository/SysLogRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/repository/SysUserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/repository/SysUserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/services/SysDictService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/services/SysDictService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/services/SysExcelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/services/SysExcelService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/services/SysLogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/services/SysLogService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/services/SysUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/services/SysUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/services/impl/SysDictServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/services/impl/SysDictServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/services/impl/SysExcelServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/services/impl/SysExcelServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/services/impl/SysLogServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/services/impl/SysLogServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/services/impl/SysUserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/java/com/uniform/modules/system/services/impl/SysUserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uniform-code-parent/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../uniform-code-parent/src/main/resources/application.properties" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -83,121 +111,7 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/util/QueryPredicate.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="181">
-              <caret line="139" column="91" selection-start-line="139" selection-start-column="91" selection-end-line="139" selection-end-column="91" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/util/BaseAbstract.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="9" column="36" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/excel/ExcelUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="169" column="37" selection-start-line="169" selection-start-column="8" selection-end-line="169" selection-end-column="37" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/design/module/system/controller/UserController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="127">
-              <caret line="53" column="28" lean-forward="true" selection-start-line="53" selection-start-column="18" selection-end-line="53" selection-end-column="39" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/excel/ExcelSheetHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-71">
-              <caret line="25" column="49" selection-start-line="25" selection-start-column="49" selection-end-line="25" selection-end-column="49" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1091#1092#0" expanded="true" />
-                <element signature="e#1121#1122#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/design/module/system/entity/excel/UserExcel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
-              <caret line="20" column="22" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="22" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/util/HttpUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-903">
-              <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/util/ToolUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="38" column="7" lean-forward="true" selection-start-line="38" selection-start-column="7" selection-end-line="38" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/util/ObjectUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="101">
-              <caret line="65" column="40" lean-forward="true" selection-start-line="65" selection-start-column="40" selection-end-line="65" selection-end-column="40" />
-              <folding>
-                <element signature="e#956#957#0" expanded="true" />
-                <element signature="e#998#999#0" expanded="true" />
-                <element signature="e#1037#1038#0" expanded="true" />
-                <element signature="e#1105#1106#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/util/result/OptResult.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="26" column="44" lean-forward="true" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -294,6 +208,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -301,240 +216,14 @@
               <item name="code-in-design" type="b2602c69:ProjectViewProjectNode" />
               <item name="code-in-design" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="code-in-design" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-in-design" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-in-design" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-in-design" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-in-design" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-in-design" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-in-design" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-in-design" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-in-design" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-in-design" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="design" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-in-design" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-in-design" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="design" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-in-design" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-in-design" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="design" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="annotation" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-in-design" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-in-design" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="design" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="annotation" type="462c0819:PsiDirectoryNode" />
-              <item name="dictAnnotation" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-in-design" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-in-design" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="design" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="enums" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-in-design" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-in-design" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="design" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="excel" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-in-design" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-in-design" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="design" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="listener" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-in-design" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-in-design" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="design" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-in-design" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-in-design" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="design" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
-              <item name="result" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-in-design" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-in-design" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="design" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="vo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-in-design" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-in-design" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="design" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-in-design" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-in-design" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="design" type="462c0819:PsiDirectoryNode" />
-              <item name="module" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-in-design" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-in-design" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="design" type="462c0819:PsiDirectoryNode" />
-              <item name="module" type="462c0819:PsiDirectoryNode" />
-              <item name="system" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-in-design" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-in-design" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="design" type="462c0819:PsiDirectoryNode" />
-              <item name="module" type="462c0819:PsiDirectoryNode" />
-              <item name="system" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-in-design" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-in-design" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="design" type="462c0819:PsiDirectoryNode" />
-              <item name="module" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-in-design" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-in-design" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-in-design" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-in-design" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-in-design" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-in-design" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-in-design" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-in-design" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-in-design" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-in-design" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="design" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="D:/develop/Pipe" />
@@ -636,6 +325,7 @@
       <workItem from="1574646625451" duration="2604000" />
       <workItem from="1574660151640" duration="10543000" />
       <workItem from="1574734946440" duration="24511000" />
+      <workItem from="1576141398362" duration="10000" />
     </task>
     <servers />
   </component>
@@ -672,13 +362,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53928000" />
+    <option name="totallyTimeSpent" value="53938000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29954615" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.30408472" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -762,13 +452,7 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/exception/ResultVo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/exception/ResultVo.java" />
     <entry file="jar://D:/DevTools/apache-maven-3.3.9/repository/org/apache/poi/poi/4.0.1/poi-4.0.1.jar!/org/apache/poi/ss/util/CellRangeAddressList.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="156">
@@ -797,19 +481,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/module/system/repository/SysDictRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="32" column="70" selection-start-line="32" selection-start-column="63" selection-end-line="32" selection-end-column="70" />
-          <folding>
-            <element signature="e#0#51#1" expanded="true" />
-            <element signature="e#0#84#1" expanded="true" />
-            <element signature="e#0#84#1" expanded="true" />
-            <element signature="e#0#68#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/module/system/repository/SysDictRepository.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/Object.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
@@ -817,13 +489,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/annotation/dictAnnotation/DictAspect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="86" column="74" lean-forward="true" selection-start-line="86" selection-start-column="74" selection-end-line="86" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/annotation/dictAnnotation/DictAspect.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/io/File.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="121">
@@ -901,13 +567,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/module/system/entity/SysUser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/module/system/entity/SysUser.java" />
     <entry file="jar://D:/DevTools/apache-maven-3.3.9/repository/org/springframework/data/spring-data-jpa/2.2.1.RELEASE/spring-data-jpa-2.2.1.RELEASE.jar!/org/springframework/data/jpa/repository/JpaRepository.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="143">
@@ -915,30 +575,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/exception/ProjectException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
-          <caret line="14" column="31" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/exception/ReturnMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="103" column="18" selection-start-line="103" selection-start-column="4" selection-end-line="103" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/module/system/services/SysUserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/exception/ProjectException.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/exception/ReturnMessage.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/module/system/services/SysUserService.java" />
     <entry file="jar://D:/DevTools/apache-maven-3.3.9/repository/org/springframework/spring-web/5.2.1.RELEASE/spring-web-5.2.1.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="89">
@@ -960,207 +599,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/module/system/services/SysDictService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="25" column="22" lean-forward="true" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/module/system/services/impl/SysDictServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="31">
-          <caret line="27" column="3" lean-forward="true" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/module/system/services/impl/SysUserServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="30" column="21" selection-start-line="30" selection-start-column="10" selection-end-line="30" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/vo/CommonField.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="22" column="28" lean-forward="true" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/excel/ApplicationContextUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="21" column="25" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
-          <folding>
-            <element signature="e#644#645#0" expanded="true" />
-            <element signature="e#717#718#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/enums/ResultType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/exception/ProjectExceptionHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="19" column="38" lean-forward="true" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/listener/ExcelListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/config/SwaggerConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="35" column="69" selection-start-line="35" selection-start-column="63" selection-end-line="35" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="972">
-          <caret line="58" column="8" selection-start-line="58" selection-start-column="8" selection-end-line="100" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="16" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/vo/CommonQuery.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="28" column="5" lean-forward="true" selection-start-line="18" selection-start-column="3" selection-end-line="28" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/util/DateUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1137">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/util/FileUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/util/HttpUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-903">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/util/BaseAbstract.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="9" column="36" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/module/system/entity/excel/UserExcel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="20" column="22" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/excel/ExcelSheetHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-71">
-          <caret line="25" column="49" selection-start-line="25" selection-start-column="49" selection-end-line="25" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1091#1092#0" expanded="true" />
-            <element signature="e#1121#1122#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/util/result/OptResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="26" column="44" lean-forward="true" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/util/QueryPredicate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="139" column="91" selection-start-line="139" selection-start-column="91" selection-end-line="139" selection-end-column="91" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/util/ToolUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="38" column="7" lean-forward="true" selection-start-line="38" selection-start-column="7" selection-end-line="38" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/util/ObjectUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="65" column="40" lean-forward="true" selection-start-line="65" selection-start-column="40" selection-end-line="65" selection-end-column="40" />
-          <folding>
-            <element signature="e#956#957#0" expanded="true" />
-            <element signature="e#998#999#0" expanded="true" />
-            <element signature="e#1037#1038#0" expanded="true" />
-            <element signature="e#1105#1106#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/module/system/controller/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="53" column="28" lean-forward="true" selection-start-line="53" selection-start-column="18" selection-end-line="53" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/excel/ExcelUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="169" column="37" selection-start-line="169" selection-start-column="8" selection-end-line="169" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/module/system/services/SysDictService.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/module/system/services/impl/SysDictServiceImpl.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/module/system/services/impl/SysUserServiceImpl.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/vo/CommonField.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/excel/ApplicationContextUtil.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/enums/ResultType.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/exception/ProjectExceptionHandler.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/listener/ExcelListener.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/config/SwaggerConfig.java" />
+    <entry file="file://$PROJECT_DIR$/pom.xml" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/vo/CommonQuery.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/util/DateUtil.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/util/FileUtil.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/util/HttpUtil.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/util/BaseAbstract.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/module/system/entity/excel/UserExcel.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/excel/ExcelSheetHandler.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/util/result/OptResult.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/util/QueryPredicate.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/util/ToolUtil.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/util/ObjectUtil.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/module/system/controller/UserController.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/design/common/excel/ExcelUtil.java" />
   </component>
   <component name="masterDetails">
     <states>

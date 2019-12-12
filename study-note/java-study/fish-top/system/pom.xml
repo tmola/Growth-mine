@@ -19,10 +19,23 @@
         </dependency>
         <dependency>
             <groupId>com.fish</groupId>
-            <artifactId>unit</artifactId>
+            <artifactId>common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>com.fish</groupId>
+            <artifactId>un</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fish</groupId>
+            <artifactId>自动装配的使用</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+
     </dependencies>
 
 

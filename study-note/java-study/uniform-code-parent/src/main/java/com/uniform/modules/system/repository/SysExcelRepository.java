@@ -1,7 +1,7 @@
-package com.uniform.modules.repository;
+package com.uniform.modules.system.repository;
 
 import com.uniform.common.base.BaseRepository;
-import com.uniform.modules.entity.SysExcel;
+import com.uniform.modules.system.entity.SysExcel;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 

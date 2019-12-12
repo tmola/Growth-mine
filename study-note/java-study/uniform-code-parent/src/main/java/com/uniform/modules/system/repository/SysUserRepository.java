@@ -1,9 +1,9 @@
-package com.uniform.modules.repository;
+package com.uniform.modules.system.repository;
 
 
 
 import com.uniform.common.base.BaseRepository;
-import com.uniform.modules.entity.SysUser;
+import com.uniform.modules.system.entity.SysUser;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

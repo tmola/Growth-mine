@@ -1,4 +1,4 @@
-package com.uniform.modules.services.impl;
+package com.uniform.modules.system.services.impl;
 
 
 import com.uniform.common.annotation.DictResult;
@@ -8,15 +8,12 @@ import com.uniform.common.utils.ObjectUtil;
 import com.uniform.common.utils.OptRetMapUtil;
 import com.uniform.common.utils.QueryStrategy;
 import com.uniform.common.vo.QueryVO;
-import com.uniform.modules.entity.SysUser;
-import com.uniform.modules.repository.SysUserRepository;
-import com.uniform.modules.services.SysUserService;
-import org.apache.poi.ss.formula.functions.T;
+import com.uniform.modules.system.entity.SysUser;
+import com.uniform.modules.system.repository.SysUserRepository;
+import com.uniform.modules.system.services.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
@@ -35,14 +32,24 @@ public class SysUserServiceImpl implements SysUserService {
     @Autowired
     private SysUserRepository userRepository;
 
-    @Transactional(propagation = Propagation.NESTED)
+
+//    @Transactional(propagation = Propagation.NESTED)
     public Map save(List<SysUser> users) throws Exception {
+//        Map map = null;
+//        try {
+//            map =  new BaseServiceOperator().save(userRepository, users);
+//        }catch (Exception e){
+//            e.getMessage();
+//            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+//        }
+//        return map;
+
         return new BaseServiceOperator().save(userRepository, users);
     }
 
     @Override
     public Map deleteByIds(List<String> ids) throws Exception {
-        return BaseServiceOperator.deleteByIds(userRepository, ids);
+        return new BaseServiceOperator().deleteByIds(userRepository, ids);
     }
 
 
@@ -61,7 +68,7 @@ public class SysUserServiceImpl implements SysUserService {
         if (ObjectUtil.isEmpty(users)) return OptRetMapUtil.optError("保存的数据不能为空");
         Integer success = 0;
         Integer field = 0;
-        List<SysUser> fieldList = new ArrayList<>();
+        Map<SysUser, String> fieldReasonMap = new LinkedHashMap<>();
         for (SysUser user : users) {
             if (ObjectUtil.isEmpty(user.getId())) {
                 user.setId(IDUtil.randomID35());
@@ -75,13 +82,13 @@ public class SysUserServiceImpl implements SysUserService {
                 savedRecord = this.userRepository.save(user);
             }catch (Exception e){
                 field ++;
+                fieldReasonMap.put(user, e.getMessage());
                 continue;
             }
             if(Objects.nonNull(savedRecord))
                 success++;
-            else
-                field ++;
+            else fieldReasonMap.put(user, "unknown reason");
         }
-        return OptRetMapUtil.saveOptResult(users.size(), success,field, null);
+        return OptRetMapUtil.saveOptResult(users.size(), success,field, fieldReasonMap);
     }
 }

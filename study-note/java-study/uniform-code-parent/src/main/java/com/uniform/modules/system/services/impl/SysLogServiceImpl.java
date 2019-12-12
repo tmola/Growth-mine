@@ -1,11 +1,11 @@
-package com.uniform.modules.services.impl;
+package com.uniform.modules.system.services.impl;
 
 
 import com.uniform.common.base.BaseServiceOperator;
 import com.uniform.common.vo.QueryVO;
-import com.uniform.modules.entity.SysLog;
-import com.uniform.modules.repository.SysLogRepository;
-import com.uniform.modules.services.SysLogService;
+import com.uniform.modules.system.entity.SysLog;
+import com.uniform.modules.system.repository.SysLogRepository;
+import com.uniform.modules.system.services.SysLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +37,6 @@ public class SysLogServiceImpl implements SysLogService, Serializable {
 
     @Override
     public Map deleteByIds(List<String> ids) throws Exception {
-        return BaseServiceOperator.deleteByIds(logRepository, ids);
+        return new BaseServiceOperator().deleteByIds(logRepository, ids);
     }
 }

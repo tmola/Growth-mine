@@ -3,8 +3,11 @@ package com.uniform.common.aspect;
 import com.alibaba.fastjson.JSONObject;
 
 import com.uniform.common.annotation.DictField;
+import com.uniform.common.annotation.DictTextField;
+import com.uniform.common.utils.ObjectUtil;
+import com.uniform.common.utils.StringUtil;
 import com.uniform.common.utils.ToolUtil;
-import com.uniform.modules.services.SysDictService;
+import com.uniform.modules.system.services.SysDictService;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -18,6 +21,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * <p>
@@ -56,8 +60,6 @@ public class DictAspect {
 
     private void parseDictText(Object result) throws Exception {
         if (result != null) {
-
-            List<JSONObject> items = new ArrayList<>();
             Object retData = result;
             if (retData != null) {
                 if (retData instanceof Map) {
@@ -66,19 +68,41 @@ public class DictAspect {
                         List records = (List) listData;
                         Class clazz = records.get(0).getClass();
                         for (Object record : (List) listData) {
-                            for (Field field : ToolUtil.getAllField(record)) {
-                                if (field.getAnnotation(DictField.class) != null) {
-                                    Method method = clazz.getMethod("get" + ToolUtil.upperFirst(field.getName()));
-                                    String dict = field.getAnnotation(DictField.class).dict();
-                                    String code = String.valueOf(method.invoke(record));//转换字典代码
-                                    String dictText = dictService.getTextByCode(dict, code);
-                                    Method methodDict = clazz.getDeclaredMethod("set" + ToolUtil.upperFirst(field.getName()) + DICT_TEXT_SUFFIX, new Class[]{String.class});
-                                    methodDict.invoke(record, dictText);
-                                }
+                            for (Field field : ObjectUtil.getAllFields(record)) {
+                                if (field.getAnnotation(DictField.class) == null) continue;
+                                Method method = clazz.getMethod("get" + ToolUtil.upperFirst(field.getName()));
+                                String dict = field.getAnnotation(DictField.class).dict();
+                                String code = String.valueOf(method.invoke(record));//转换字典代码
+                                String dictText = dictService.getTextByCode(dict, code);
+                                Method methodDict = clazz.getDeclaredMethod("set" + ToolUtil.upperFirst(field.getName()) + DICT_TEXT_SUFFIX, new Class[]{String.class});
+                                methodDict.invoke(record, dictText);
                             }
                         }
                     }
                 }
+            }
+        }
+    }
+
+    private void parseDictText_2(Object result) throws Exception {
+        if (Objects.isNull(result)) return;
+        Object retData = result;
+        if (!(retData instanceof Map)) return;
+        Object listData = ((Map<String, Object>) retData).get("list");
+        if (Objects.isNull(listData)) return;
+        if (!(listData instanceof List)) return;
+        List records = (List) listData;
+        if (records.isEmpty()) return;
+        Class clazz = records.get(0).getClass();
+        for (Object record : (List) listData) {
+            for (Field field : ObjectUtil.getAllFields(record)) {
+                if (field.getAnnotation(DictField.class) == null) continue;
+                Method method = clazz.getMethod("get" + StringUtil.upperFirst(field.getName()));
+                String dict = field.getAnnotation(DictField.class).dict();
+                String code = String.valueOf(method.invoke(record));//转换字典代码
+                String dictText = dictService.getTextByCode(dict, code);
+                Method methodDict = clazz.getDeclaredMethod("set" + ToolUtil.upperFirst(field.getName()) + DICT_TEXT_SUFFIX, new Class[]{String.class});
+                methodDict.invoke(record, dictText);
             }
         }
     }

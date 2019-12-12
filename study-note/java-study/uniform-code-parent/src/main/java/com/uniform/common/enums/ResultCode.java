@@ -1,6 +1,7 @@
 package com.uniform.common.enums;
 
 import lombok.Getter;
+import org.springframework.dao.DataIntegrityViolationException;
 
 /**
  * <p>
@@ -41,6 +42,9 @@ public enum ResultCode {
     fileUploadFaild(300, "文件上传失败"),
     fileDownloadFaild(300, "文件下载失败"),
     fileTransInterrupt(300, "文件传输中断"),
+
+    databaseDataIntegrityViolation(256, "违反唯一性约束"),
+    databasDuplicateKey(257,"违反主键约束")
     ;
     public Integer code;
     public String info;

@@ -1,9 +1,10 @@
-package com.uniform.modules.entity;
+package com.uniform.modules.system.entity;
 
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.uniform.common.annotation.DictField;
+import com.uniform.common.annotation.DictTextField;
 import com.uniform.common.base.BaseField;
 import lombok.Data;
 
@@ -55,6 +56,7 @@ public class SysUser extends BaseField {
     private String sex;
 
     @Transient
+    @DictTextField(field = "sex")
     private String sexDictText;
 
     /**

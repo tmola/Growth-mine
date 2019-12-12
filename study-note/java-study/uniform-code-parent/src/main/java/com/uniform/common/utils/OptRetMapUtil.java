@@ -18,26 +18,28 @@ import java.util.Map;
  * @date 2019/11/17 2:57
  */
 public class OptRetMapUtil {
-    public static <T> Map saveOptResult(int total, int successed, int fieled, List<T> fieldList) {
+    public static Map saveOptResult(int total, int successed, int fieled, Map fieldReasonMap) {
         Map<String, Object> result = new LinkedHashMap<>();
         result.put("type", Type.SAVE.value);
         result.put("total", total);
         result.put("successed", successed);
         result.put("fieled", fieled);
-        if (fieldList != null && !fieldList.isEmpty())
-            result.put("fieledList", fieldList);
+        if (fieldReasonMap != null && !fieldReasonMap.isEmpty())
+            result.put("fieldReasonMap", fieldReasonMap);
         return result;
     }
-    public static <T> Map deleteOptResult(int total, int successed, int fieled, List<T> fieldList) {
-        Map<String, Object> result = new HashMap();
+
+    public static Map deleteOptResult(int total, int successed, int fieled, Map fieldReasonMap) {
+        Map<String, Object> result = new LinkedHashMap<>();
         result.put("type", Type.DELETE.value);
         result.put("total", total);
         result.put("successed", successed);
         result.put("fieled", fieled);
-        if (fieldList != null && !fieldList.isEmpty())
-            result.put("fieledList", fieldList);
+        if (fieldReasonMap != null && !fieldReasonMap.isEmpty())
+            result.put("fieldReasonMap", fieldReasonMap);
         return result;
     }
+
     public static <T> Map selectOptResult(List<T> list) {
         Map<String, Object> result = new HashMap();
         result.put("type", Type.SELECT.value);
@@ -45,6 +47,7 @@ public class OptRetMapUtil {
         result.put("totalSize", list.size());
         return result;
     }
+
     public static Map selectOptResult(Page page) {
         Map<String, Object> result = new HashMap();
         result.put("type", Type.SELECT_PAGE.value);
@@ -55,17 +58,20 @@ public class OptRetMapUtil {
         result.put("pageable", page.getPageable());
         return result;
     }
+
     public static Map optError() {
         Map<String, Object> result = new HashMap();
         result.put("type", Type.ERROR.value);
         return result;
     }
+
     public static Map optError(String err) {
         Map<String, Object> result = new HashMap();
         result.put("type", Type.ERROR.value);
         result.put("message", err);
         return result;
     }
+
     public enum Type {
         INSERT(0, "新增"),
         UPDATE(1, "修改"),

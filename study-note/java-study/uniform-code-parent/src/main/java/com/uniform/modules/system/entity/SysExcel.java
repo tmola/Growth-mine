@@ -1,11 +1,9 @@
-package com.uniform.modules.entity;
+package com.uniform.modules.system.entity;
 
 import com.uniform.common.base.BaseField;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Date;
 
 /**
  * excel配置表

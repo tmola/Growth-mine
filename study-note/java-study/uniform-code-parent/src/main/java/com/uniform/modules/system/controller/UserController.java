@@ -1,13 +1,12 @@
-package com.uniform.modules.controller;
+package com.uniform.modules.system.controller;
 
 
 import com.uniform.common.vo.QueryVO;
 import com.uniform.common.vo.ResultVO;
-import com.uniform.modules.services.SysUserService;
-import com.uniform.modules.entity.SysUser;
+import com.uniform.modules.system.services.SysUserService;
+import com.uniform.modules.system.entity.SysUser;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.UnexpectedRollbackException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

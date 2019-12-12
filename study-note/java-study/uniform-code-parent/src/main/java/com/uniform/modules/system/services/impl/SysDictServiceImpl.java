@@ -1,12 +1,12 @@
-package com.uniform.modules.services.impl;
+package com.uniform.modules.system.services.impl;
 
 
 import com.uniform.common.base.BaseServiceOperator;
 import com.uniform.common.utils.QueryStrategy;
 import com.uniform.common.vo.QueryVO;
-import com.uniform.modules.repository.SysDictRepository;
-import com.uniform.modules.entity.SysDict;
-import com.uniform.modules.services.SysDictService;
+import com.uniform.modules.system.repository.SysDictRepository;
+import com.uniform.modules.system.entity.SysDict;
+import com.uniform.modules.system.services.SysDictService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Modifying;
@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,18 +30,14 @@ public class SysDictServiceImpl implements SysDictService, Serializable {
     @Autowired
     private SysDictRepository dictRepository;
 
-    @Transactional
-    @Modifying
     @Override
     public Map save(List<SysDict> dictList) throws Exception {
         return new BaseServiceOperator().save(dictRepository, dictList);
     }
 
-    @Transactional
-    @Modifying
     @Override
     public Map deleteByIds(List<String> ids) throws Exception {
-        return  BaseServiceOperator.deleteByIds(dictRepository, ids);
+        return  new BaseServiceOperator().deleteByIds(dictRepository, ids);
     }
 
     @Override

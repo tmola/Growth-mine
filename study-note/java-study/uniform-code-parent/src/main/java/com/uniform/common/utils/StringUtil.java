@@ -1,6 +1,9 @@
 package com.uniform.common.utils;
 
 
+import java.io.*;
+import java.nio.charset.Charset;
+
 /**
  * <p>
  *
@@ -10,11 +13,11 @@ package com.uniform.common.utils;
  */
 public class StringUtil {
 
-    public static boolean isBlank(String string){
+    public static boolean isBlank(String string) {
         return null == string || "".equals(string);
     }
 
-    public static  boolean isNotBlank(String string){
+    public static boolean isNotBlank(String string) {
         return !isBlank(string);
     }
 
@@ -28,6 +31,7 @@ public class StringUtil {
         }
         return "";
     }
+
     /**
      * 首字母转小写
      */
@@ -38,6 +42,7 @@ public class StringUtil {
             return String.valueOf(Character.toLowerCase(word.charAt(0))) + word.substring(1);
         }
     }
+
     /**
      * 首字母转大写
      */
@@ -47,5 +52,28 @@ public class StringUtil {
         } else {
             return String.valueOf(Character.toUpperCase(word.charAt(0))) + word.substring(1);
         }
+    }
+
+    public static String getExceptionInfo(Throwable throwable) throws IOException {
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        String exceptionErr = throwable.getCause().toString();
+        try {
+            throwable.printStackTrace(pw);
+        } finally {
+            pw.close();
+        }
+        String exceptionNAme = exceptionErr.substring(exceptionErr.lastIndexOf(".") + 1, exceptionErr.lastIndexOf(":"));
+        BufferedReader br = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(sw.toString().getBytes(Charset.forName("utf8"))), Charset.forName("utf8")));
+        String line;
+        StringBuffer strbuf = new StringBuffer();
+        while ((line = br.readLine()) != null) {
+            if (!line.trim().equals("")) {
+               if(line.contains("Caused by:"))
+                strbuf.append(line.substring(line.lastIndexOf(":")));
+            }
+        }
+        System.out.println(strbuf.toString());
+        return exceptionNAme + "{" +strbuf.toString() +"}";
     }
 }

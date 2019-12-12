@@ -1,10 +1,10 @@
-package com.uniform.modules.controller;
+package com.uniform.modules.system.controller;
 
 
 import com.uniform.common.vo.QueryVO;
 import com.uniform.common.vo.ResultVO;
-import com.uniform.modules.services.SysDictService;
-import com.uniform.modules.entity.SysDict;
+import com.uniform.modules.system.services.SysDictService;
+import com.uniform.modules.system.entity.SysDict;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -1,8 +1,8 @@
-package com.uniform.modules.services;
+package com.uniform.modules.system.services;
 
 
 import com.uniform.common.base.BaseService;
-import com.uniform.modules.entity.SysExcel;
+import com.uniform.modules.system.entity.SysExcel;
 
 /**
  * <p>

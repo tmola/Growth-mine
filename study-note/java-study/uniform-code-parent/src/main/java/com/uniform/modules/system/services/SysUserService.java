@@ -1,9 +1,9 @@
-package com.uniform.modules.services;
+package com.uniform.modules.system.services;
 
 
 
 import com.uniform.common.base.BaseService;
-import com.uniform.modules.entity.SysUser;
+import com.uniform.modules.system.entity.SysUser;
 
 import java.util.List;
 import java.util.Map;
